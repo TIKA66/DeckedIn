@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cvxqppnnoov3g"]
+
+[ext_resource type="Script" uid="uid://bkwdbilyck770" path="res://Scripts/dragon.gd" id="1_jb4vs"]
+
+[node name="Dragon" type="Node2D" unique_id=129830806]
+script = ExtResource("1_jb4vs")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2027061948]
+
+[node name="Label" type="Label" parent="." unique_id=569778324]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "The dragon attacked!"
