@@ -1,3 +1,5 @@
 res://Scenes/main.tscn
 res://Scripts/cards.gd
 res://Scenes/card.tscn
+res://Scenes/movement.tscn
+res://Scripts/movement.gd
