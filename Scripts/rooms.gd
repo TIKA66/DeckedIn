@@ -24,9 +24,9 @@ func place_item(spawn_rate):
 func place_monster():
 	number_of_monsters = randi_range(1, 2) #roll how many monsters to spawn (1 or 2)
 	for i in number_of_monsters: # repeat for each monster to be spawned
-		monster_to_spawn = randi_range(1, available_monsters.size()-1) # choose which monster to spawn
-		Global.map[Movement.player_position]["monsters"].append(available_monsters[monster_to_spawn]) # add to a list of monsters in the room
-	print("monsters in room: ", Global.map[Movement.player_position]["monsters"]) #DEBUGGING
+		monster_to_spawn = available_monsters[randi_range(1, available_monsters.size())] # choose which monster to spawn from available monster list
+		Global.map[Movement.player_position]["monsters"].append(monster_to_spawn) # add to a list of monsters in the room
+	print("monsters in room: ", Global.map[Movement.player_position]["monsters"]) #DEBUGGING - show monsters in current room
 
 func starting():
 	item_spawn_rate = 0.2
@@ -38,4 +38,7 @@ func monster():
 	place_monster()
 
 func market():
+	pass
+
+func ending():
 	pass

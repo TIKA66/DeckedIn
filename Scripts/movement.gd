@@ -100,4 +100,4 @@ func current_room() -> void:
 		"market":
 			pass
 		"ending":
-			pass
+			Rooms.ending()

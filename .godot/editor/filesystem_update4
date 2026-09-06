@@ -1,10 +1,4 @@
-res://Scenes/market.tscn
-res://Scripts/movement.gd
-res://Scenes/map.tscn
+res://Scenes/movement.tscn
 res://Scripts/rooms.gd
-res://Scenes/rooms.tscn
-res://Scripts/cards.gd
-res://Scripts/global.gd
-res://Scripts/artefact.gd
-res://monster.gd
-res://Scripts/monster.tscn
+res://Scripts/monster.gd
+res://Scripts/movement.gd
