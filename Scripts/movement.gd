@@ -3,7 +3,7 @@ Filename: movement.gd
 Version: 1.0
 Purpose: To handle the movemement of the player and the artefact.
 Date: 6/9/2026
-Author: Elliot Slota
+Author: Elliot Slota & Tika Banerjee
 '''
 
 extends Node2D
@@ -55,7 +55,7 @@ func select_room(room_position: int, room_cost: int) -> bool:
 
 #REVIEW - do we need this? - the player is only handed valid movememnt options
 #func is_connected_room(room_position: int) -> bool:
-	## This will later check the player's connected rooms.
+	# This will later check the player's connected rooms.
 	#return true
 
 # MOVE PLAYER - move the player to the selected room and reset adjacent rooms
