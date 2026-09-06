@@ -100,25 +100,25 @@ func draw_hand() -> void:
 		# CONDITIONS: A statement that is evaluated as true or false and is used to control which section of code is executed.
 		# Using this, we want to check if the deck & the discard_pile is empty to break, otherwise reshuffle_discard into the deck (to ensure we never run out of card) 
 		# -> then to draw_onecard into the hand
-		if deck.is_empty():
+		if deck.is_empty(): # Ensures the deck is never empty and will always contain some cards --> foolproof at every step
 			if discard_pile.is_empty():
 				break
 			else:
-				reshuffle_discard()
-		if not deck.is_empty():
+				reshuffle_discard() # Redirect to the reshuffle-discard function, to reuse the code consistently w/o having to create blocks of similar code and organisation
+		if not deck.is_empty(): # Creates the hand for the user
 			draw_one_card()
 	print("PASSED") # DEBUGGING STATEMENT FOR THE INTERNAL SYSTEM
 
-# DRAW ONE CARD
+# DRAW ONE CARD - rather than dealing with the entire hand, it simply draws one card -> essential for other systems, e.g. movement, weaponry, etc
 func draw_one_card() -> void:
-	if deck.is_empty():
+	if deck.is_empty(): # Ensures the deck is never empty and will always contain some cards --> foolproof at every step
 		if discard_pile.is_empty():
 			return
 		reshuffle_discard()
 	if deck.is_empty():
 		return
 	var card: Dictionary = deck.pop_back()
-	card["use"] = false
+	card["use"] = false # Reset the use of the card
 	hand.append(card)
 	cards_drawn += 1
 	print("PASSED") # DEBUGGING STATEMENT FOR THE INTERNAL SYSTEM
@@ -128,22 +128,24 @@ func reshuffle_discard() -> void:
 	deck.append_array(discard_pile)
 	discard_pile.clear()
 	shuffle_deck()
+	print("PASSED") # DEBUGGING STATEMENT FOR THE INTERNAL SYSTEM
 
-# SELECT CARD
+# SELECT CARD - for the turn, the user is able to select a card
 func select_card(card_index: int) -> bool:
 	# Check that selected card exists
 	if card_index < 0 or card_index >= hand.size():
 		print("Invalid card selection.")
 		return false
 	var selected_card: Dictionary = hand[card_index]
-	if selected_card["use"] == true:
+	# Checks whether the selected card has been used
+	if selected_card["use"] == true: # Debugging
 		print("This card has already been used.")
 		return false
 	# Process card
-	process_card(card_index)
+	process_card(card_index) # Redirects to the next section
 	return true
 
-# PROCESS CARD
+# PROCESS CARD - system actually reads the card that has been selected
 func process_card(card_index: int) -> void:
 	if card_index < 0 or card_index >= hand.size():
 		return
@@ -157,12 +159,12 @@ func process_card(card_index: int) -> void:
 	selected_card["use"] = true
 	hand.remove_at(card_index)
 	discard_pile.append(selected_card)
-	
-	# DRAGON TRIGGER
+	# DRAGON TRIGGER - returns to the system that the game has ended in another script
 	if selected_card["dragon"] == true:
 		dragon_triggered = true
+	print("PASSED") # DEBUGGING STATEMENT FOR THE INTERNAL SYSTEM
 
-# PROCESS ITEM
+# PROCESS ITEM - for the specifc item cards, processing the card to then update GUI as following
 func process_item(card: Dictionary) -> void:
 	match card["name"]:
 		"Fountain":
@@ -178,7 +180,7 @@ func process_item(card: Dictionary) -> void:
 		"Treasure Chest":
 			player_gold += 10
 
-# END TURN
+# END TURN - resetting the variables to its orginal state
 func end_turn() -> void:
 	# Reset card use values
 	for card in hand:
@@ -189,6 +191,11 @@ func end_turn() -> void:
 	# Reset temporary card values
 	available_attack = 0
 	available_movement = 0
+	print(deck) # DEBUGGING STATEMENT FOR THE INTERNAL SYSTEM
+	print(available_movement) # DEBUGGING STATEMENT FOR THE INTERNAL SYSTEM
+	print(available_attack) # DEBUGGING STATEMENT FOR THE INTERNAL SYSTEM
+
+# FOLLOWING FUNCTIONS ARE FOCUSED TOWARDS OTHER SYSTEM AND SCRIPTS, TO ENSURE ORGANISATION, MAINTAINANCE & EFFICIENCY
 
 # GET CARD
 func get_card(card_index: int) -> Dictionary:
