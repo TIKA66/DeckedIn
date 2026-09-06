@@ -1,5 +1,5 @@
 extends Node
-class_name Movement
+class_name movement
 
 var player_position: int = 0
 var available_movement: int = 0

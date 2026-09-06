@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ckue8tktk1pq6"]
+
+[ext_resource type="Script" uid="uid://dx0kctanodbky" path="res://Scripts/artefact.gd" id="1_shxgq"]
+
+[node name="Artefact" type="Node2D" unique_id=97299738]
+script = ExtResource("1_shxgq")
