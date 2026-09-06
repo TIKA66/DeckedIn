@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cypyflpnc4orh"]
+
+[ext_resource type="Script" uid="uid://c8wr2d0a21hmq" path="res://Scripts/market.gd" id="1_rfcd5"]
+
+[node name="Market" type="Node2D" unique_id=1013006065]
+script = ExtResource("1_rfcd5")

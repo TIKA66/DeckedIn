@@ -203,8 +203,8 @@ func get_hand() -> Array[Dictionary]:
 # CHECK FOR MOVEMENT
 func has_movement() -> bool:
 	return available_movement > 0
-# CHECK FOR ATTACK
 
+# CHECK FOR ATTACK
 func has_attack() -> bool:
 	return available_attack > 0
 
