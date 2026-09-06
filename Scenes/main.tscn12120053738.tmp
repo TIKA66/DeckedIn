@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://cf4josvlj3d2h"]
+
+[ext_resource type="PackedScene" uid="uid://be4mnwk2citru" path="res://Scenes/artefact.tscn" id="1_bo1nx"]
+[ext_resource type="PackedScene" uid="uid://f2sv0ogk0ask" path="res://Scenes/room.tscn" id="1_jjgbg"]
+
+[node name="Main" type="Node2D" unique_id=1456674367]
+
+[node name="Artefact" parent="." unique_id=1554592271 instance=ExtResource("1_bo1nx")]
+
+[node name="Dungeon" type="Node" parent="." unique_id=122365064]
+
+[node name="Starting" parent="Dungeon" unique_id=730608215 instance=ExtResource("1_jjgbg")]
+visible = false
+
+[node name="Nothing" parent="Dungeon" unique_id=2021505077 instance=ExtResource("1_jjgbg")]
+visible = false
+roomType = 1
+
+[node name="Monster" parent="Dungeon" unique_id=964282411 instance=ExtResource("1_jjgbg")]
+visible = false
+roomType = 3
+
+[node name="Market" parent="Dungeon" unique_id=421460290 instance=ExtResource("1_jjgbg")]
+roomType = 2
+
+[node name="sellConfirmation" type="Label" parent="Dungeon/Market" unique_id=525816854]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Purchase item?"
+
+[node name="purchaseUnsuccessful" type="Label" parent="Dungeon/Market" unique_id=1863944069]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "You do not have enough gold."
+
+[node name="purchaseSuccessful" type="Label" parent="Dungeon/Market" unique_id=1648117739]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Purchase successful."
+
+[node name="Ending" parent="Dungeon" unique_id=1190139023 instance=ExtResource("1_jjgbg")]
+visible = false
+roomType = 4

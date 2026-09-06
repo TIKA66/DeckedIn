@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://cmji0q45s33we"]
+
+[ext_resource type="Script" uid="uid://bhn0vtxhenwos" path="res://Scenes/map.gd" id="1_26yhd"]
+[ext_resource type="PackedScene" uid="uid://f2sv0ogk0ask" path="res://Scenes/room.tscn" id="1_ci6au"]
+
+[node name="Map" type="Node2D" unique_id=394942759]
+script = ExtResource("1_26yhd")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=81212364]
+
+[node name="Dungeon" type="Node" parent="." unique_id=1850869187]
+
+[node name="Starting" parent="Dungeon" unique_id=730608215 instance=ExtResource("1_ci6au")]
+visible = false
+currentRoom = Vector2i(0, 0)
+roomType = 0
+
+[node name="Nothing" parent="Dungeon" unique_id=2128888236 instance=ExtResource("1_ci6au")]
+visible = false
+currentRoom = Vector2i(0, 0)
+roomType = 1
+
+[node name="Monster" parent="Dungeon" unique_id=2008044980 instance=ExtResource("1_ci6au")]
+visible = false
+currentRoom = Vector2i(0, 0)
+roomType = 3
+
+[node name="Market" parent="Dungeon" unique_id=829243452 instance=ExtResource("1_ci6au")]
+currentRoom = Vector2i(0, 0)
+roomType = 2
+
+[node name="sellConfirmation" type="Label" parent="Dungeon/Market" unique_id=1678493766]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Purchase item?"
+metadata/_edit_use_anchors_ = true
+
+[node name="purchaseUnsuccessful" type="Label" parent="Dungeon/Market" unique_id=1020260032]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "You do not have enough gold."
+metadata/_edit_use_anchors_ = true
+
+[node name="purchaseSuccessful" type="Label" parent="Dungeon/Market" unique_id=1862979126]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Purchase successful."
+metadata/_edit_use_anchors_ = true
+
+[node name="Ending" parent="Dungeon" unique_id=1344429781 instance=ExtResource("1_ci6au")]
+visible = false
+currentRoom = Vector2i(0, 0)
+roomType = 4

@@ -1,6 +1,14 @@
 [gd_scene format=3 uid="uid://be4mnwk2citru"]
 
-[ext_resource type="Script" uid="uid://df73hhbm6cxr3" path="res://Scenes/artefact.gd" id="1_shxgq"]
+[ext_resource type="Script" uid="uid://df73hhbm6cxr3" path="res://Scripts/artefact.gd" id="1_shxgq"]
 
 [node name="Artefact" type="Node2D" unique_id=1554592271]
 script = ExtResource("1_shxgq")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1710228961]
+
+[node name="foundArtefact" type="Label" parent="." unique_id=286762397]
+offset_left = -91.0
+offset_right = 92.0
+offset_bottom = 23.0
+text = "You found the artefact!"
