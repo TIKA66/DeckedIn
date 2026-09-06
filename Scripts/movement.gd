@@ -1,6 +1,19 @@
+'''
+Filename: movement.gd
+Version: 1.0
+Purpose: To set up and manage the movement system of this game 
+Date: 5/09/2026
+Author: Aikantika Banerjee
+'''
+
+#Imports and initialising the system
+# NODE: A basic building block of a Godot game. Nodes provide different types of functionality and can be organised together within a scene tree.
 extends Node
+# CLASS: A blueprint for creating objects that combines related data and behaviours.
 class_name Movement
 
+# VARIABLE: Stores a value in memory under a named identifier. The value can be accessed & changed throughout the program.
+# USER'S MOVEMENT VARIABLES - setting up the 
 var player_position: int = 0
 var available_movement: int = 0
 var selected_room: int = -1
