@@ -16,11 +16,7 @@ config/features=PackedStringArray("4.7")
 
 [autoload]
 
-Global="*uid://c2srgnumgtbpu"
-Movement="*uid://bhn0vtxhenwos"
-Cards="*uid://b8ig2j2jhc1j0"
-Artefact="*uid://df73hhbm6cxr3"
-Rooms="*uid://kdhmm0babmur"
+Map="*uid://c2srgnumgtbpu"
 
 [display]
 
