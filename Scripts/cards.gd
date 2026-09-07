@@ -46,7 +46,8 @@ func create_card(
 	attack: int,
 	movement: int,
 	gold: int,
-	dragon: bool
+	dragon: bool,
+	sprite: String
 ) -> Dictionary: # DICTIONARY: A collection of key-value pairs used to store related information. Each value is accessed using its corresponding key.
 		# RETURN VALUE: The value produced by a function and sent back to the part of the program that called it.
 	return { # Set up the structure of the cards, including all the important components of it
@@ -56,13 +57,14 @@ func create_card(
 		"movement": movement,
 		"gold": gold,
 		"dragon": dragon,
-		"use": false
+		"use": false,
+		"sprite": 0
 	}
 
 # CREATE THE DECK - sets up each individual cards & its properties according to the card's structure as set up previously
 func create_deck() -> void: # Allows easy change in terms of card's properties or to add any card for expansioning in the future
 	deck.clear() # To remove the previous game's deck
-	add_card_copies("Dagger", "weapon", 1, 0, 0, false, 3) # Redirect to the add_card_copies function
+	add_card_copies("Dagger", "weapon", 1, 0, 0, false, 3, $Dagger) # Redirect to the add_card_copies function
 	add_card_copies("Spear", "weapon", 2, 0, 0, false, 2)
 	add_card_copies("Sword", "weapon", 3, 0, 0, false, 1)
 	add_card_copies("Stumble", "movement", 0, 1, 0, true, 2)
@@ -76,9 +78,9 @@ func create_deck() -> void: # Allows easy change in terms of card's properties o
 	print("Created ", deck.size(), " cards.") # DEBUGGING STATEMENT FOR THE INTERNAL SYSTEM
 
 # ADD COPIES OF CARD - ensures all components are written with the correct data type & then creates that manny cards to 
-func add_card_copies(card_name: String, card_type: String, attack: int, movement: int, gold: int, dragon: bool, amount: int) -> void:
+func add_card_copies(card_name: String, card_type: String, attack: int, movement: int, gold: int, dragon: bool, amount: int, sprite: string) -> void:
 	for i in range(amount): # FOR LOOP: Repeats a block of code for each value in a collection or range.
-		var card := create_card(card_name, card_type, attack, movement, gold, dragon) # Uses the create_card function to initialise the card design to then add to the deck
+		var card := create_card(card_name, card_type, attack, movement, gold, dragon, sprite) # Uses the create_card function to initialise the card design to then add to the deck
 		deck.append(card) # Adds the card to the deck
 
 # SHUFFLE - uses the function shuffle to change the original layout of the deck to randomising it, to ensure a seamless & fun experience for the user
