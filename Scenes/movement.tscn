@@ -1,6 +1,18 @@
 [gd_scene format=3 uid="uid://ct3u0utr1tdro"]
 
 [ext_resource type="Script" uid="uid://bhn0vtxhenwos" path="res://Scripts/movement.gd" id="1_er76d"]
+[ext_resource type="PackedScene" uid="uid://b0efnx7pamvx8" path="res://Scenes/card.tscn" id="2_jeyp3"]
+[ext_resource type="PackedScene" uid="uid://cmji0q45s33we" path="res://Scenes/map.tscn" id="3_rjeat"]
+[ext_resource type="PackedScene" uid="uid://ckue8tktk1pq6" path="res://Scenes/artefact.tscn" id="4_dyl7d"]
+[ext_resource type="PackedScene" uid="uid://cgsbhxgchkt8g" path="res://Scenes/rooms.tscn" id="5_8fla0"]
 
 [node name="Movement" type="Node2D" unique_id=1919449938]
 script = ExtResource("1_er76d")
+
+[node name="Card_System" parent="." unique_id=1456674367 instance=ExtResource("2_jeyp3")]
+
+[node name="Artefact" parent="." unique_id=313302047 instance=ExtResource("4_dyl7d")]
+
+[node name="Rooms" parent="." unique_id=210182496 instance=ExtResource("5_8fla0")]
+
+[node name="Map" parent="." unique_id=394942759 instance=ExtResource("3_rjeat")]

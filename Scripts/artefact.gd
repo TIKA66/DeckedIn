@@ -15,7 +15,7 @@ var artefact_value: int = 10
 var artefact_use: bool = false
 
 func found_check():
-	if artefact_position == Movement.player_position:
+	if artefact_position == $"..".player_position:
 		#DISPLAY open treasure chest w artefact - change sprite
 		#player_artefact = true
 		artefact_position = null # remove artefact from map

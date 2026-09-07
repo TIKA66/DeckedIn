@@ -1,7 +1,11 @@
-res://Scripts/cards.gd
+res://Scenes/movement.tscn
 res://Scripts/movement.gd
+res://Scenes/main.tscn
+res://Scenes/dragon.tscn
+res://Scenes/artefact.tscn
 res://Scripts/artefact.gd
-res://Scripts/dragon.gd
-res://Scripts/global.gd
+res://Scenes/monster.tscn
+res://monster.gd
 res://Scripts/rooms.gd
-res://Scenes/card.tscn
+res://Scripts/map.gd
+res://Scenes/map.tscn
