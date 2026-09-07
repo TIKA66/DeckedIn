@@ -9,3 +9,4 @@ res://monster.gd
 res://Scripts/rooms.gd
 res://Scripts/map.gd
 res://Scenes/map.tscn
+res://Scripts/monster.gd
