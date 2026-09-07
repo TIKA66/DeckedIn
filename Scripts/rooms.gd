@@ -48,22 +48,6 @@ func create_item(
 		"sprite": sprite
 	}
 
-#
-#func create_items_to_spawn() -> void: # Allows easy change in terms of card's properties or to add any card for expansioning in the future
-	#available_items.clear() # To remove the previous game's available_items
-	#add_item_copies("Dagger", "weapon", 1, 0, 0, false, 3, $Dagger) # Redirect to the add_item_copies function
-	#add_item_copies("Spear", "weapon", 2, 0, 0, false, 2, $Spear)
-	#add_item_copies("Sword", "weapon", 3, 0, 0, false, 1, $Sword)
-	#add_item_copies("Stumble", "movement", 0, 1, 0, true, 2, $Stumble)
-	#add_item_copies("Explore", "movement", 0, 1, 0, false, 2, $Explore)
-	#add_item_copies("Ladder", "movement", 0, 2, 0, false, 4, $Ladder)
-	#add_item_copies("Boots", "movement", 0, 3, 0, false, 2, $Boots)
-	#add_item_copies("Fountain", "item", 0, 0, 0, false, 3, $Fountain)
-	#add_item_copies("Portal", "item", 0, 0, 0, false, 3, $Portal)
-	#add_item_copies("Gem", "item", 0, 0, 5, false, 2, $Gem)
-	#add_item_copies("Treasure Chest", "item", 0, 0, 10, true, 1, $"Treasure Chest")
-	#print("Created ", available_items.size(), " items for available_items.") # DEBUGGING STATEMENT FOR THE INTERNAL SYSTEM
-
 func create_items_to_spawn() -> void: # Allows easy change in terms of card's properties or to add any card for expansioning in the future
 	available_items.clear() # To remove the previous game's available_items list
 	available_items.append(create_item("Dagger", "weapon", 1, 0, 0, false, $Dagger))
@@ -101,10 +85,11 @@ func monster():
 #	FUNCTION ABOUT BUTTON PRESSED TO END TURN.
 
 func market():
-	print("Items available:")
-	for item in items_to_sell:
-		print(items_to_sell[item]["name"])
-	purchase_item(0)
+	#print("Items available:")
+	#for item in items_to_sell:
+		#print(items_to_sell[item]["name"])
+	#purchase_item(0)
+	print("Market with hidden items oooosohoho") #debugging to see if this is crashing the game
 
 func ending():
 #	CHECK IF ARTEFACT IS HELD.
