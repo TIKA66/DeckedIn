@@ -47,7 +47,7 @@ func create_card(
 	movement: int,
 	gold: int,
 	dragon: bool,
-	sprite: String
+	sprite
 ) -> Dictionary: # DICTIONARY: A collection of key-value pairs used to store related information. Each value is accessed using its corresponding key.
 		# RETURN VALUE: The value produced by a function and sent back to the part of the program that called it.
 	return { # Set up the structure of the cards, including all the important components of it
@@ -65,20 +65,20 @@ func create_card(
 func create_deck() -> void: # Allows easy change in terms of card's properties or to add any card for expansioning in the future
 	deck.clear() # To remove the previous game's deck
 	add_card_copies("Dagger", "weapon", 1, 0, 0, false, 3, $Dagger) # Redirect to the add_card_copies function
-	add_card_copies("Spear", "weapon", 2, 0, 0, false, 2)
-	add_card_copies("Sword", "weapon", 3, 0, 0, false, 1)
-	add_card_copies("Stumble", "movement", 0, 1, 0, true, 2)
-	add_card_copies("Explore", "movement", 0, 1, 0, false, 2)
-	add_card_copies("Ladder", "movement", 0, 2, 0, false, 4)
-	add_card_copies("Boots", "movement", 0, 3, 0, false, 2)
-	add_card_copies("Fountain", "item", 0, 0, 0, false, 3)
-	add_card_copies("Portal", "item", 0, 0, 0, false, 3)
-	add_card_copies("Gem", "item", 0, 0, 5, false, 2)
-	add_card_copies("Treasure Chest", "item", 0, 0, 10, true, 1)
+	add_card_copies("Spear", "weapon", 2, 0, 0, false, 2, $Spear)
+	add_card_copies("Sword", "weapon", 3, 0, 0, false, 1, $Sword)
+	add_card_copies("Stumble", "movement", 0, 1, 0, true, 2, $Stumble)
+	add_card_copies("Explore", "movement", 0, 1, 0, false, 2, $Explore)
+	add_card_copies("Ladder", "movement", 0, 2, 0, false, 4, $Ladder)
+	add_card_copies("Boots", "movement", 0, 3, 0, false, 2, $Boots)
+	add_card_copies("Fountain", "item", 0, 0, 0, false, 3, $Fountain)
+	add_card_copies("Portal", "item", 0, 0, 0, false, 3, $Portal)
+	add_card_copies("Gem", "item", 0, 0, 5, false, 2, $Gem)
+	add_card_copies("Treasure Chest", "item", 0, 0, 10, true, 1, $"Treasure Chest")
 	print("Created ", deck.size(), " cards.") # DEBUGGING STATEMENT FOR THE INTERNAL SYSTEM
 
 # ADD COPIES OF CARD - ensures all components are written with the correct data type & then creates that manny cards to 
-func add_card_copies(card_name: String, card_type: String, attack: int, movement: int, gold: int, dragon: bool, amount: int, sprite: string) -> void:
+func add_card_copies(card_name: String, card_type: String, attack: int, movement: int, gold: int, dragon: bool, amount: int, sprite) -> void:
 	for i in range(amount): # FOR LOOP: Repeats a block of code for each value in a collection or range.
 		var card := create_card(card_name, card_type, attack, movement, gold, dragon, sprite) # Uses the create_card function to initialise the card design to then add to the deck
 		deck.append(card) # Adds the card to the deck

@@ -3,6 +3,14 @@
 [ext_resource type="Script" uid="uid://b8ig2j2jhc1j0" path="res://Scripts/cards.gd" id="1_0qqmn"]
 [ext_resource type="Texture2D" uid="uid://cqh71p158fmro" path="res://Resources/card_dagger.png" id="2_wf8id"]
 [ext_resource type="Texture2D" uid="uid://mh3qsv8xrt0a" path="res://Resources/card_spear.png" id="3_brehn"]
+[ext_resource type="Texture2D" uid="uid://ducvuh33wpha2" path="res://Resources/card_sword.png" id="4_uf1hq"]
+[ext_resource type="Texture2D" uid="uid://c1udw1vmcap38" path="res://Resources/card_explore.png" id="5_sj14m"]
+[ext_resource type="Texture2D" uid="uid://b51o2k6cvcgai" path="res://Resources/card_ladder.png" id="6_pyy63"]
+[ext_resource type="Texture2D" uid="uid://bthoh3px7shhl" path="res://Resources/card_boots.png" id="7_3b2om"]
+[ext_resource type="Texture2D" uid="uid://bjaf5n2rx32k8" path="res://Resources/card_fountain.png" id="8_vsrr6"]
+[ext_resource type="Texture2D" uid="uid://c4xq07ijpcpve" path="res://Resources/card_portal.png" id="9_lath7"]
+[ext_resource type="Texture2D" uid="uid://btatbje2mnmao" path="res://Resources/card_gem.png" id="10_dp72k"]
+[ext_resource type="Texture2D" uid="uid://7xyy071aldlc" path="res://Resources/card_treasure_chest.png" id="11_ot2lt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wxbh7"]
 size = Vector2(150, 177)
@@ -28,47 +36,83 @@ texture = ExtResource("3_brehn")
 position = Vector2(1, -0.5)
 shape = SubResource("RectangleShape2D_wxbh7")
 
-[node name="Dagger3" type="Area2D" parent="." unique_id=936941077]
+[node name="Sword" type="Area2D" parent="." unique_id=936941077]
 
-[node name="Dagger" type="Sprite2D" parent="Dagger3" unique_id=1644857651]
-texture = ExtResource("2_wf8id")
+[node name="Sword" type="Sprite2D" parent="Sword" unique_id=1644857651]
+texture = ExtResource("4_uf1hq")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Dagger3" unique_id=1628301365]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword" unique_id=1628301365]
 position = Vector2(1, -0.5)
 shape = SubResource("RectangleShape2D_wxbh7")
 
-[node name="Dagger4" type="Area2D" parent="." unique_id=2076518572]
+[node name="Stumble" type="Area2D" parent="." unique_id=2076518572]
 
-[node name="Dagger" type="Sprite2D" parent="Dagger4" unique_id=1101215507]
+[node name="Stumble" type="Sprite2D" parent="Stumble" unique_id=1101215507]
 texture = ExtResource("2_wf8id")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Dagger4" unique_id=1976059814]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stumble" unique_id=1976059814]
 position = Vector2(1, -0.5)
 shape = SubResource("RectangleShape2D_wxbh7")
 
-[node name="Dagger5" type="Area2D" parent="." unique_id=841411998]
+[node name="Explore" type="Area2D" parent="." unique_id=841411998]
 
-[node name="Dagger" type="Sprite2D" parent="Dagger5" unique_id=445674704]
-texture = ExtResource("2_wf8id")
+[node name="Explore" type="Sprite2D" parent="Explore" unique_id=445674704]
+texture = ExtResource("5_sj14m")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Dagger5" unique_id=102251304]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Explore" unique_id=102251304]
 position = Vector2(1, -0.5)
 shape = SubResource("RectangleShape2D_wxbh7")
 
-[node name="Dagger6" type="Area2D" parent="." unique_id=1284973831]
+[node name="Ladder" type="Area2D" parent="." unique_id=1284973831]
 
-[node name="Dagger" type="Sprite2D" parent="Dagger6" unique_id=6582305]
-texture = ExtResource("2_wf8id")
+[node name="Ladder" type="Sprite2D" parent="Ladder" unique_id=6582305]
+texture = ExtResource("6_pyy63")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Dagger6" unique_id=1760160095]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ladder" unique_id=1760160095]
 position = Vector2(1, -0.5)
 shape = SubResource("RectangleShape2D_wxbh7")
 
-[node name="Dagger7" type="Area2D" parent="." unique_id=2104596690]
+[node name="Boots" type="Area2D" parent="." unique_id=2104596690]
 
-[node name="Dagger" type="Sprite2D" parent="Dagger7" unique_id=1576053678]
-texture = ExtResource("2_wf8id")
+[node name="Boots" type="Sprite2D" parent="Boots" unique_id=1576053678]
+texture = ExtResource("7_3b2om")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Dagger7" unique_id=515435935]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boots" unique_id=515435935]
+position = Vector2(1, -0.5)
+shape = SubResource("RectangleShape2D_wxbh7")
+
+[node name="Fountain" type="Area2D" parent="." unique_id=1176670938]
+
+[node name="Fountain" type="Sprite2D" parent="Fountain" unique_id=1660151954]
+texture = ExtResource("8_vsrr6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fountain" unique_id=1481464262]
+position = Vector2(1, -0.5)
+shape = SubResource("RectangleShape2D_wxbh7")
+
+[node name="Portal" type="Area2D" parent="." unique_id=938905496]
+
+[node name="Portal" type="Sprite2D" parent="Portal" unique_id=360556807]
+texture = ExtResource("9_lath7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Portal" unique_id=379583972]
+position = Vector2(1, -0.5)
+shape = SubResource("RectangleShape2D_wxbh7")
+
+[node name="Gem" type="Area2D" parent="." unique_id=960450660]
+
+[node name="Gem" type="Sprite2D" parent="Gem" unique_id=1151475861]
+texture = ExtResource("10_dp72k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gem" unique_id=964550388]
+position = Vector2(1, -0.5)
+shape = SubResource("RectangleShape2D_wxbh7")
+
+[node name="Treasure Chest" type="Area2D" parent="." unique_id=1547539240]
+
+[node name="Treasure Chest" type="Sprite2D" parent="Treasure Chest" unique_id=1369923979]
+texture = ExtResource("11_ot2lt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Treasure Chest" unique_id=820165636]
 position = Vector2(1, -0.5)
 shape = SubResource("RectangleShape2D_wxbh7")

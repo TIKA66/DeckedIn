@@ -3,11 +3,11 @@ extends Node2D
 var item_spawn_rate = null
 
 #GENERAL ITEM VARS
-var available_items: Array = ["Fountain", "Treasure Chest", "Stumble"] #TO CHANGE
+var available_items: Array = ["Fountain", "Treasure Chest", "Stumble"] # tika pls help how do create items :(
 var item_spawned = null
 
 #MONSTER ROOM VARS
-var available_monsters: Array = ["fish", "trout", "pike"] #temporary monsters
+var available_monsters: Array = ["fish", "trout", "pike"] #temporary monsters, tika also please help how do i put monsters in here
 var number_of_monsters = null
 var monster_to_spawn = null
 

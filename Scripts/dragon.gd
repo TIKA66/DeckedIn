@@ -15,7 +15,7 @@ func _ready() -> void:
 
 # Attack's player
 func attack(player_health, dragon_attack):
-	player_health -= dragon_attack
+	player_health = player_health - dragon_attack
 	dragon_attack += 1
 	#DEBUGGING print("dragon attack: ", dragon_attack)
 
