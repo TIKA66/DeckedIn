@@ -1,5 +1,2 @@
-res://Scenes/card.tscn
-res://Scripts/rooms.gd
-res://Scripts/cards.gd
-res://Scripts/dragon.gd
-res://Scenes/dragon.tscn
+res://Scenes/main.tscn
+res://Scenes/main.gd

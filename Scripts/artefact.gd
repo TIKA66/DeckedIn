@@ -16,9 +16,9 @@ var artefact_use: bool = false
 
 func found_check():
 	if artefact_position == $"..".player_position:
-		#DISPLAY open treasure chest w artefact - change sprite
-		#player_artefact = true
+		$Artefact.texture = preload("res://Resources/artefact_open.png")
 		artefact_position = null # remove artefact from map
+		$"../..".player_artefact = true
 	else:
 		print("Artefact has not been found.")
 

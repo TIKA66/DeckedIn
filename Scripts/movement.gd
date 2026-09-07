@@ -8,16 +8,14 @@ Author: Elliot Slota & Tika Banerjee
 
 extends Node2D
 
-#GLOBAL - a variable that can be accessed from any script, held in the global.gd script
-var player_position = Map.map[3]["room"] # Stores the players position as the room number
 #NULL - a variable that points to a non-existent object, in this case to be initialised later
+var player_position = Map.map[1]["room"]
 var selected_room = null # Stores the room the player wishes to move to
 var movement_cost: int = 0 # stores the cost to move to a selected room
 var adjacent_rooms: Array = Map.map[player_position]["adjacent_rooms"]
 
-# DEBUGGING for function testing
-func _ready() -> void:
-	current_room()
+#func _ready() -> void:
+	#current_room()
 	#print(Map.map)
 	#print("Player position: ", Map.map[player_position]["type"], " room")
 	#start_movement()
@@ -71,6 +69,10 @@ func move_player() -> void:
 func display_room() -> void:
 	print("Room type revealed.")
 	print("Displaying room: ", Map.map[player_position]["type"], " room") #pull room name from dictionary
+	#if Map.map[player_position]["items"] == true: #if an item exists in roomm, display item
+		#print("Displaying item: ", Map.map[player_position]["items"])
+	#if Map.map[player_position]["monsters"] == true: #if a monster exists in roomm, display monster
+		#print("Displaying item: ", Map.map[player_position]["monsters"])
 
 # SET ARTEFACT- set artefact position to a random room of the player's adjacent rooms
 func set_artefact() -> void:
