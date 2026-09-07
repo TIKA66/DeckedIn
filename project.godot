@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.7")
 [autoload]
 
 Map="*uid://c2srgnumgtbpu"
+GlobalData="*uid://co8tqjmp4i4wo"
 
 [display]
 

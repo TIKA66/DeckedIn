@@ -41,7 +41,19 @@ var card_sprites: Array[Sprite2D] = []
 # INITIALISE THE SYSTEM
 func _ready() -> void:
 	# Initialise the card_sprites array
-	card_sprites = [$Dagger/Dagger, $Spear/Spear, $Sword/Sword, $Stumble/Stumble, $Explore/Explore, $Ladder/Ladder, $Boots/Boots, $Fountain/Fountain, $Portal/Portal, $Gem/Gem, $TreasureChest/TreasureChest]
+	card_sprites = [
+		$VBoxContainer/HBoxContainer/Dagger/Dagger,
+		$VBoxContainer/HBoxContainer/Spear/Spear,
+		$VBoxContainer/HBoxContainer/Sword/Sword,
+		$VBoxContainer/HBoxContainer/Stumble/Stumble,
+		$VBoxContainer/HBoxContainer/Explore/Explore,
+		$VBoxContainer/HBoxContainer/Ladder/Ladder,
+		$VBoxContainer/HBoxContainer/Boots/Boots,
+		$VBoxContainer/HBoxContainer/Fountain/Fountain,
+		$VBoxContainer/HBoxContainer/Portal/Portal,
+		$VBoxContainer/HBoxContainer/Gem/Gem,
+		$VBoxContainer/HBoxContainer/TreasureChest/TreasureChest
+	]
 	for i in range(card_sprites.size()):
 		print("Sprite ", i, ": ", card_sprites[i])
 	create_deck() # From the intialisation of the system to redirect to the next function of create_deck()
@@ -69,23 +81,23 @@ func create_card(
 		"gold": gold,
 		"dragon": dragon,
 		"use": false,
-		"sprite": sprite
+		"sprite": TextureRect
 	}
 
 # CREATE THE DECK - sets up each individual cards & its properties according to the card's structure as set up previously
 func create_deck() -> void: # Allows easy change in terms of card's properties or to add any card for expansioning in the future
 	deck.clear() # To remove the previous game's deck
-	add_card_copies("Dagger", "weapon", 1, 0, 0, false, 3, $Dagger/Dagger) # Redirect to the add_card_copies function
-	add_card_copies("Spear", "weapon", 2, 0, 0, false, 2, $Spear/Spear)
-	add_card_copies("Sword", "weapon", 3, 0, 0, false, 1, $Sword/Sword)
-	add_card_copies("Stumble", "movement", 0, 1, 0, true, 2, $Stumble/Stumble)
-	add_card_copies("Explore", "movement", 0, 1, 0, false, 2, $Explore/Explore)
-	add_card_copies("Ladder", "movement", 0, 2, 0, false, 4, $Ladder/Ladder)
-	add_card_copies("Boots", "movement", 0, 3, 0, false, 2, $Boots/Boots)
-	add_card_copies("Fountain", "item", 0, 0, 0, false, 3, $Fountain/Fountain)
-	add_card_copies("Portal", "item", 0, 0, 0, false, 3, $Portal/Portal)
-	add_card_copies("Gem", "item", 0, 0, 5, false, 2, $Gem/Gem)
-	add_card_copies("Treasure Chest", "item", 0, 0, 10, true, 1, $TreasureChest/TreasureChest)
+	add_card_copies("Dagger", "weapon", 1, 0, 0, false, 3, $VBoxContainer/HBoxContainer/Dagger/Dagger) # Redirect to the add_card_copies function
+	add_card_copies("Spear", "weapon", 2, 0, 0, false, 2, $VBoxContainer/HBoxContainer/Spear/Spear)
+	add_card_copies("Sword", "weapon", 3, 0, 0, false, 1, $VBoxContainer/HBoxContainer/Sword/Sword)
+	add_card_copies("Stumble", "movement", 0, 1, 0, true, 2, $VBoxContainer/HBoxContainer/Stumble/Stumble)
+	add_card_copies("Explore", "movement", 0, 1, 0, false, 2, $VBoxContainer/HBoxContainer/Explore/Explore)
+	add_card_copies("Ladder", "movement", 0, 2, 0, false, 4, $VBoxContainer/HBoxContainer/Ladder/Ladder)
+	add_card_copies("Boots", "movement", 0, 3, 0, false, 2, $VBoxContainer/HBoxContainer/Boots/Boots)
+	add_card_copies("Fountain", "item", 0, 0, 0, false, 3, $VBoxContainer/HBoxContainer/Fountain/Fountain)
+	add_card_copies("Portal", "item", 0, 0, 0, false, 3, $VBoxContainer/HBoxContainer/Portal/Portal)
+	add_card_copies("Gem", "item", 0, 0, 5, false, 2, $VBoxContainer/HBoxContainer/Gem/Gem)
+	add_card_copies("Treasure Chest", "item", 0, 0, 10, true, 1, $VBoxContainer/HBoxContainer/TreasureChest/TreasureChest)
 	print("Created ", deck.size(), " cards.") # DEBUGGING STATEMENT FOR THE INTERNAL SYSTEM
 
 # ADD COPIES OF CARD - ensures all components are written with the correct data type & then creates that manny cards to 
@@ -111,6 +123,43 @@ func start_turn() -> void:
 	update_card_selection()
 	print("PASSED") # DEBUGGING STATEMENT FOR THE INTERNAL SYSTEM
 
+# DRAW HAND
+func draw_hand() -> void:
+	while hand.size() < HAND_SIZE: # WHILE LOOP: Repeats a block of code while a specified condition remains true.
+		# CONDITIONS: A statement that is evaluated as true or false and is used to control which section of code is executed.
+		# Using this, we want to check if the deck & the discard_pile is empty to break, otherwise reshuffle_discard into the deck (to ensure we never run out of card) 
+		# -> then to draw_onecard into the hand
+		if deck.is_empty(): # Ensures the deck is never empty and will always contain some cards --> foolproof at every step
+			if discard_pile.is_empty():
+				break
+			else:
+				reshuffle_discard() # Redirect to the reshuffle-discard function, to reuse the code consistently w/o having to create blocks of similar code and organisation
+		if not deck.is_empty(): # Creates the hand for the user
+			draw_one_card()
+	print("PASSED") # DEBUGGING STATEMENT FOR THE INTERNAL SYSTEM
+
+# DRAW ONE CARD - rather than dealing with the entire hand, it simply draws one card -> essential for other systems, e.g. movement, weaponry, etc
+func draw_one_card() -> void:
+	if deck.is_empty(): # Ensures the deck is never empty and will always contain some cards --> foolproof at every step
+		if discard_pile.is_empty():
+			return
+		reshuffle_discard()
+	if deck.is_empty():
+		return
+	var card: Dictionary = deck.pop_back()
+	card["use"] = false # Reset the use of the card
+	hand.append(card)
+	cards_drawn += 1
+	print("PASSED") # DEBUGGING STATEMENT FOR THE INTERNAL SYSTEM
+
+# RESHUFFLE
+func reshuffle_discard() -> void:
+	deck.append_array(discard_pile)
+	discard_pile.clear()
+	shuffle_deck()
+	print("PASSED") # DEBUGGING STATEMENT FOR THE INTERNAL SYSTEM
+
+
 # CARD INPUT - allows the player to move between cards and select them
 func _input(event: InputEvent) -> void:
 	if not player_turn:
@@ -125,7 +174,6 @@ func _input(event: InputEvent) -> void:
 		# Move selection right
 		elif event.keycode == KEY_RIGHT:
 			selected_card_index += 1
-
 			if selected_card_index >= hand.size():
 				selected_card_index = 0
 			update_card_selection()
@@ -165,55 +213,18 @@ func update_card_selection() -> void:
 	for i in range(hand.size()):
 		var card_sprite: Sprite2D = hand[i]["sprite"]
 		if i == selected_card_index:
-			card_sprite.scale = Vector2(1.2, 1.2)
+			card_sprite.scale = Vector2(0.8, 0.8)
 		else:
-			card_sprite.scale = Vector2(1, 1)
-
-# DRAW HAND
-func draw_hand() -> void:
-	while hand.size() < HAND_SIZE: # WHILE LOOP: Repeats a block of code while a specified condition remains true.
-		# CONDITIONS: A statement that is evaluated as true or false and is used to control which section of code is executed.
-		# Using this, we want to check if the deck & the discard_pile is empty to break, otherwise reshuffle_discard into the deck (to ensure we never run out of card) 
-		# -> then to draw_onecard into the hand
-		if deck.is_empty(): # Ensures the deck is never empty and will always contain some cards --> foolproof at every step
-			if discard_pile.is_empty():
-				break
-			else:
-				reshuffle_discard() # Redirect to the reshuffle-discard function, to reuse the code consistently w/o having to create blocks of similar code and organisation
-		if not deck.is_empty(): # Creates the hand for the user
-			draw_one_card()
-	print("PASSED") # DEBUGGING STATEMENT FOR THE INTERNAL SYSTEM
-
-# DRAW ONE CARD - rather than dealing with the entire hand, it simply draws one card -> essential for other systems, e.g. movement, weaponry, etc
-func draw_one_card() -> void:
-	if deck.is_empty(): # Ensures the deck is never empty and will always contain some cards --> foolproof at every step
-		if discard_pile.is_empty():
-			return
-		reshuffle_discard()
-	if deck.is_empty():
-		return
-	var card: Dictionary = deck.pop_back()
-	card["use"] = false # Reset the use of the card
-	hand.append(card)
-	cards_drawn += 1
-	print("PASSED") # DEBUGGING STATEMENT FOR THE INTERNAL SYSTEM
+			card_sprite.scale = Vector2(0.7, 0.7)
 
 # SHOW HAND - visually, show all the cards in the hand
 func show_hand() -> void:
 	for sprite in card_sprites:
 		sprite.visible = false
-
 	for i in range(hand.size()):
 		var card_sprite: Sprite2D = hand[i]["sprite"]
 		card_sprite.visible = true
-		card_sprite.position = Vector2(200 + (i * 150), 500)
-
-# RESHUFFLE
-func reshuffle_discard() -> void:
-	deck.append_array(discard_pile)
-	discard_pile.clear()
-	shuffle_deck()
-	print("PASSED") # DEBUGGING STATEMENT FOR THE INTERNAL SYSTEM
+		card_sprite.position = Vector2(25 + (i *10), 10)
 
 # SELECT CARD - for the turn, the user is able to select a card
 func select_card(card_index: int) -> bool:
