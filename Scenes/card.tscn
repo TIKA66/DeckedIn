@@ -16,103 +16,126 @@
 size = Vector2(150, 177)
 
 [node name="Card_System" type="Node2D" unique_id=1456674367]
+scale = Vector2(0.8, 0.8)
 script = ExtResource("1_0qqmn")
 
 [node name="Dagger" type="Area2D" parent="." unique_id=1864814458]
+scale = Vector2(0.8000001, 0.8000001)
 
 [node name="Dagger" type="Sprite2D" parent="Dagger" unique_id=2104021353]
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_wf8id")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dagger" unique_id=1876748221]
-position = Vector2(1, -0.5)
+scale = Vector2(0.8, 0.8)
 shape = SubResource("RectangleShape2D_wxbh7")
 
 [node name="Spear" type="Area2D" parent="." unique_id=335842696]
+scale = Vector2(0.8, 0.8)
 
-[node name="Dagger" type="Sprite2D" parent="Spear" unique_id=1392378981]
+[node name="Spear" type="Sprite2D" parent="Spear" unique_id=1392378981]
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("3_brehn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Spear" unique_id=1545942881]
-position = Vector2(1, -0.5)
+scale = Vector2(0.8, 0.8)
 shape = SubResource("RectangleShape2D_wxbh7")
 
 [node name="Sword" type="Area2D" parent="." unique_id=936941077]
+scale = Vector2(0.8, 0.8)
 
 [node name="Sword" type="Sprite2D" parent="Sword" unique_id=1644857651]
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("4_uf1hq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sword" unique_id=1628301365]
-position = Vector2(1, -0.5)
+scale = Vector2(0.8, 0.8)
 shape = SubResource("RectangleShape2D_wxbh7")
 
 [node name="Stumble" type="Area2D" parent="." unique_id=2076518572]
+scale = Vector2(0.8, 0.8)
 
 [node name="Stumble" type="Sprite2D" parent="Stumble" unique_id=1101215507]
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_wf8id")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stumble" unique_id=1976059814]
-position = Vector2(1, -0.5)
+scale = Vector2(0.8, 0.8)
 shape = SubResource("RectangleShape2D_wxbh7")
 
 [node name="Explore" type="Area2D" parent="." unique_id=841411998]
+scale = Vector2(0.8, 0.8)
 
 [node name="Explore" type="Sprite2D" parent="Explore" unique_id=445674704]
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("5_sj14m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Explore" unique_id=102251304]
-position = Vector2(1, -0.5)
+scale = Vector2(0.8, 0.8)
 shape = SubResource("RectangleShape2D_wxbh7")
 
 [node name="Ladder" type="Area2D" parent="." unique_id=1284973831]
+scale = Vector2(0.8, 0.8)
 
 [node name="Ladder" type="Sprite2D" parent="Ladder" unique_id=6582305]
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("6_pyy63")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ladder" unique_id=1760160095]
-position = Vector2(1, -0.5)
+scale = Vector2(0.8, 0.8)
 shape = SubResource("RectangleShape2D_wxbh7")
 
 [node name="Boots" type="Area2D" parent="." unique_id=2104596690]
+scale = Vector2(0.8, 0.8)
 
 [node name="Boots" type="Sprite2D" parent="Boots" unique_id=1576053678]
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("7_3b2om")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boots" unique_id=515435935]
-position = Vector2(1, -0.5)
+scale = Vector2(0.8, 0.8)
 shape = SubResource("RectangleShape2D_wxbh7")
 
 [node name="Fountain" type="Area2D" parent="." unique_id=1176670938]
+scale = Vector2(0.8, 0.8)
 
 [node name="Fountain" type="Sprite2D" parent="Fountain" unique_id=1660151954]
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("8_vsrr6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Fountain" unique_id=1481464262]
-position = Vector2(1, -0.5)
+scale = Vector2(0.8, 0.8)
 shape = SubResource("RectangleShape2D_wxbh7")
 
 [node name="Portal" type="Area2D" parent="." unique_id=938905496]
+scale = Vector2(0.8, 0.8)
 
 [node name="Portal" type="Sprite2D" parent="Portal" unique_id=360556807]
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("9_lath7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Portal" unique_id=379583972]
-position = Vector2(1, -0.5)
+scale = Vector2(0.8, 0.8)
 shape = SubResource("RectangleShape2D_wxbh7")
 
 [node name="Gem" type="Area2D" parent="." unique_id=960450660]
+scale = Vector2(0.8, 0.8)
 
 [node name="Gem" type="Sprite2D" parent="Gem" unique_id=1151475861]
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("10_dp72k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Gem" unique_id=964550388]
-position = Vector2(1, -0.5)
+scale = Vector2(0.8, 0.8)
 shape = SubResource("RectangleShape2D_wxbh7")
 
-[node name="Treasure Chest" type="Area2D" parent="." unique_id=1547539240]
+[node name="TreasureChest" type="Area2D" parent="." unique_id=1547539240]
+scale = Vector2(0.8, 0.8)
 
-[node name="Treasure Chest" type="Sprite2D" parent="Treasure Chest" unique_id=1369923979]
+[node name="TreasureChest" type="Sprite2D" parent="TreasureChest" unique_id=1369923979]
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("11_ot2lt")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Treasure Chest" unique_id=820165636]
-position = Vector2(1, -0.5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TreasureChest" unique_id=820165636]
+scale = Vector2(0.8, 0.8)
 shape = SubResource("RectangleShape2D_wxbh7")
