@@ -24,7 +24,7 @@ func place_item(spawn_rate):
 	if item_roll > spawn_rate:
 		item_spawned = randi_range(1, available_items.size()-1) # choose which item to spawn
 		Map.map[$"..".player_position]["items"].append(available_items[item_spawned]) #spawn item
-		print("item in room: ", Map.map[$"..".player_position]["items"])
+		#print("item in room: ", Map.map[$"..".player_position]["items"]) i think this is throwing a print 
 
 #CREATE INDIVIDUAL ITEM FOR AVAILABLE_ITEMS
 func create_item(
@@ -48,33 +48,47 @@ func create_item(
 		"sprite": sprite
 	}
 
-#ADD ALL ITEMS INTO AVAILABLE ITEMS
-func create_items_to_spawn() -> void: # Allows easy change in terms of card's properties or to add any card for expansioning in the future
-	available_items.clear() # To remove the previous game's available_items
-	add_item_copies("Dagger", "weapon", 1, 0, 0, false, 3, $Dagger) # Redirect to the add_item_copies function
-	add_item_copies("Spear", "weapon", 2, 0, 0, false, 2, $Spear)
-	add_item_copies("Sword", "weapon", 3, 0, 0, false, 1, $Sword)
-	add_item_copies("Stumble", "movement", 0, 1, 0, true, 2, $Stumble)
-	add_item_copies("Explore", "movement", 0, 1, 0, false, 2, $Explore)
-	add_item_copies("Ladder", "movement", 0, 2, 0, false, 4, $Ladder)
-	add_item_copies("Boots", "movement", 0, 3, 0, false, 2, $Boots)
-	add_item_copies("Fountain", "item", 0, 0, 0, false, 3, $Fountain)
-	add_item_copies("Portal", "item", 0, 0, 0, false, 3, $Portal)
-	add_item_copies("Gem", "item", 0, 0, 5, false, 2, $Gem)
-	add_item_copies("Treasure Chest", "item", 0, 0, 10, true, 1, $"Treasure Chest")
-	print("Created ", available_items.size(), " items.") # DEBUGGING STATEMENT FOR THE INTERNAL SYSTEM
+#
+#func create_items_to_spawn() -> void: # Allows easy change in terms of card's properties or to add any card for expansioning in the future
+	#available_items.clear() # To remove the previous game's available_items
+	#add_item_copies("Dagger", "weapon", 1, 0, 0, false, 3, $Dagger) # Redirect to the add_item_copies function
+	#add_item_copies("Spear", "weapon", 2, 0, 0, false, 2, $Spear)
+	#add_item_copies("Sword", "weapon", 3, 0, 0, false, 1, $Sword)
+	#add_item_copies("Stumble", "movement", 0, 1, 0, true, 2, $Stumble)
+	#add_item_copies("Explore", "movement", 0, 1, 0, false, 2, $Explore)
+	#add_item_copies("Ladder", "movement", 0, 2, 0, false, 4, $Ladder)
+	#add_item_copies("Boots", "movement", 0, 3, 0, false, 2, $Boots)
+	#add_item_copies("Fountain", "item", 0, 0, 0, false, 3, $Fountain)
+	#add_item_copies("Portal", "item", 0, 0, 0, false, 3, $Portal)
+	#add_item_copies("Gem", "item", 0, 0, 5, false, 2, $Gem)
+	#add_item_copies("Treasure Chest", "item", 0, 0, 10, true, 1, $"Treasure Chest")
+	#print("Created ", available_items.size(), " items for available_items.") # DEBUGGING STATEMENT FOR THE INTERNAL SYSTEM
 
-# ADD ITEM COPIES - repeat item creation for specified number of times
-func add_item_copies(card_name: String, card_type: String, attack: int, movement: int, gold: int, dragon: bool, amount: int, sprite) -> void:
-	for i in range(amount): # FOR LOOP: Repeats a block of code for each value in a collection or range.
-		var item := create_item(card_name, card_type, attack, movement, gold, dragon, sprite) # Uses the create_item function to initialise the item then add to available items
-		available_items.append(item) # Adds the item to the available items to find
+func create_items_to_spawn() -> void: # Allows easy change in terms of card's properties or to add any card for expansioning in the future
+	available_items.clear() # To remove the previous game's available_items list
+	available_items.append(create_item("Dagger", "weapon", 1, 0, 0, false, $Dagger))
+	available_items.append(create_item("Spear", "weapon", 2, 0, 0, false, $Spear))
+	available_items.append(create_item("Sword", "weapon", 3, 0, 0, false, $Sword))
+	available_items.append(create_item("Stumble", "movement", 0, 1, 0, true, $Stumble))
+	available_items.append(create_item("Explore", "movement", 0, 1, 0, false, $Explore))
+	available_items.append(create_item("Ladder", "movement", 0, 2, 0, false, $Ladder))
+	available_items.append(create_item("Boots", "movement", 0, 3, 0, false, $Boots))
+	available_items.append(create_item("Fountain", "item", 0, 0, 0, false, $Fountain))
+	available_items.append(create_item("Portal", "item", 0, 0, 0, false, $Portal))
+	available_items.append(create_item("Gem", "item", 0, 0, 5, false, $Gem))
+	available_items.append(create_item("Treasure Chest", "item", 0, 0, 10, true, $"Treasure Chest"))
+	print("Created ", available_items.size(), " items to sell.") # DEBUGGING STATEMENT FOR THE INTERNAL SYSTEM
+
+## ADD ITEM COPIES - repeat item creation for specified number of times
+#func add_item_copies(card_name: String, card_type: String, attack: int, movement: int, gold: int, dragon: bool, amount: int, sprite) -> void:
+	#var item := create_item(card_name, card_type, attack, movement, gold, dragon, sprite) # Uses the create_item function to initialise the item then add to available items
+	#available_items.append(item) # Adds the item to the available items to find
 
 # SPAWN MONSTER
 func place_monster():
 	monster_to_spawn = $".".available_monsters[randi_range(1, $".".available_monsters.size()-1)] # choose which monster to spawn from available monster list
 	Map.map[$"..".player_position]["monsters"].append(monster_to_spawn) # add to a list of monsters in the room
-	print("monsters in room: ", Map.map[$"..".player_position]["monsters"]) #DEBUGGING - show monsters in current room
+	#print("monsters in room: ", Map.map[$"..".player_position]["monsters"]) #DEBUGGING - show monsters in current room
 
 func starting():
 	item_spawn_rate = 0.2
@@ -84,13 +98,17 @@ func monster():
 	item_spawn_rate = 0.4
 	place_item(item_spawn_rate)
 	place_monster()
+#	FUNCTION ABOUT BUTTON PRESSED TO END TURN.
 
 func market():
 	print("Items available:")
-	print(items_to_sell)
+	for item in items_to_sell:
+		print(items_to_sell[item]["name"])
 	purchase_item(0)
 
 func ending():
+#	CHECK IF ARTEFACT IS HELD.
+#		IF PLAYER_ARTEFACT IS TRUE, END THE GAME. "YOU ESCAPED!!" YATTA
 	pass
 
 func purchase_item(item_index: int):
@@ -125,10 +143,10 @@ func create_sell_item(
 		"sprite": sprite
 	}
 
-#ADD ALL ITEMS INTO AVAILABLE ITEMS
+#ADD ALL ITEMS INTO SELL LIST
 func create_items_to_sell() -> void: # Allows easy change in terms of card's properties or to add any card for expansioning in the future
-	items_to_sell.clear() # To remove the previous game's available_items
-	create_sell_item("Sword", "weapon", 3, 0, 0, 1, false, $Sword)
-	create_sell_item("Boots", "movement", 0, 3, 0, 3, false, $Boots)
-	create_sell_item("Fountain", "item", 0, 0, 0, 3, false,$Fountain)
+	items_to_sell.clear() # To remove the previous game's items to sell
+	items_to_sell.append(create_sell_item("Sword", "weapon", 3, 0, 0, 1, false, $Sword))
+	items_to_sell.append(create_sell_item("Boots", "movement", 0, 3, 0, 3, false, $Boots))
+	items_to_sell.append(create_sell_item("Fountain", "item", 0, 0, 0, 3, false,$Fountain))
 	print("Created ", items_to_sell.size(), " items to sell.") # DEBUGGING STATEMENT FOR THE INTERNAL SYSTEM
