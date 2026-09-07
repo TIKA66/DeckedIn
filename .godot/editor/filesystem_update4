@@ -1,2 +1,5 @@
 res://Scenes/card.tscn
+res://Scripts/rooms.gd
 res://Scripts/cards.gd
+res://Scripts/dragon.gd
+res://Scenes/dragon.tscn
