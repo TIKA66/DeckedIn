@@ -1,13 +1,26 @@
 [gd_scene format=3 uid="uid://cp4vc3rol8olt"]
 
 [ext_resource type="PackedScene" uid="uid://b0efnx7pamvx8" path="res://Scenes/card.tscn" id="1_8gbba"]
+[ext_resource type="Script" uid="uid://5p5cpb0yym4c" path="res://Scenes/main.gd" id="1_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://cgsbhxgchkt8g" path="res://Scenes/rooms.tscn" id="2_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://blprj6etjn2ig" path="res://Scenes/dragon.tscn" id="3_kry3j"]
+[ext_resource type="Script" uid="uid://ctxmjvah13bew" path="res://Scripts/monster.gd" id="5_kry3j"]
+[ext_resource type="PackedScene" uid="uid://ct3u0utr1tdro" path="res://Scenes/movement.tscn" id="6_21xkr"]
 
 [node name="main" type="Node2D" unique_id=928746799]
+script = ExtResource("1_jjvhh")
 
 [node name="Card_System" parent="." unique_id=1456674367 instance=ExtResource("1_8gbba")]
 
 [node name="Rooms" parent="." unique_id=210182496 instance=ExtResource("2_jjvhh")]
 
 [node name="Monster" parent="." unique_id=313302047 instance=ExtResource("3_kry3j")]
+script = ExtResource("5_kry3j")
+
+[node name="Movement" parent="." unique_id=1919449938 instance=ExtResource("6_21xkr")]
+
+[node name="End_turn" type="Button" parent="." unique_id=1582002304]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[connection signal="pressed" from="End_turn" to="." method="_on_end_turn_pressed"]

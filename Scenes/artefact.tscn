@@ -1,6 +1,19 @@
 [gd_scene format=3 uid="uid://ckue8tktk1pq6"]
 
 [ext_resource type="Script" uid="uid://dx0kctanodbky" path="res://Scripts/artefact.gd" id="1_shxgq"]
+[ext_resource type="Texture2D" uid="uid://dxajx1u4qny05" path="res://Resources/artefact_closed.png" id="2_xg2hl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b46ge"]
+size = Vector2(150, 177)
 
 [node name="Artefact" type="Node2D" unique_id=313302047]
 script = ExtResource("1_shxgq")
+
+[node name="Artefact" type="Area2D" parent="." unique_id=1566399393]
+
+[node name="Artefact" type="Sprite2D" parent="Artefact" unique_id=973266642]
+texture = ExtResource("2_xg2hl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Artefact" unique_id=1203518296]
+position = Vector2(1, -0.5)
+shape = SubResource("RectangleShape2D_b46ge")

@@ -20,6 +20,7 @@ const HAND_SIZE: int = 5  # CONSTANT:Stores a fixed value that should not be cha
 var hand: Array[Dictionary] = [] # Stores the cards that are currently in the user's hand, taken from the deck
 var deck: Array[Dictionary] = [] # Stores what is the deck at the moment
 var discard_pile: Array[Dictionary] = [] # Whatever was used in the hand will be transferred to here
+var player_turn = false #tracks whether player turn is active or not
 var available_attack: int = 0 # Stores what the available attacks the user can do with their current hand, more specifically what the weapon cards can offer
 var available_movement: int = 0 # Stores what the available attacks the user can do with their current hand, more specically what the movement cards can offer
 var player_health: int = 5 # Initialises what the player_health
@@ -58,7 +59,7 @@ func create_card(
 		"gold": gold,
 		"dragon": dragon,
 		"use": false,
-		"sprite": 0
+		"sprite": sprite
 	}
 
 # CREATE THE DECK - sets up each individual cards & its properties according to the card's structure as set up previously
@@ -89,6 +90,7 @@ func shuffle_deck() -> void:
 
 # START TURN - begins the user's turn with the initial assignment of variables to reset each turn
 func start_turn() -> void:
+	player_turn = true
 	available_attack = 0
 	available_movement = 0
 	dragon_triggered = false

@@ -9,6 +9,7 @@ Author: Elliot Slota
 extends Node
 
 #MAP - creates the map as a dictionary, each number represents the room and has a dictionary of its properties inside
+
 var map:Dictionary = {
 	1: {
 		"room": 1,
@@ -66,6 +67,3 @@ var map:Dictionary = {
 		"items_to_sell": ["Fountain", ""]
 		}
 }
-
-#CONSIDER CHANGING THE FORMAT TO THIS???
-#6: [6, "market", [3, 5], 1, [], []]
