@@ -1,142 +1,154 @@
 [gd_scene format=3 uid="uid://b0efnx7pamvx8"]
 
 [ext_resource type="Script" uid="uid://b8ig2j2jhc1j0" path="res://Scripts/cards.gd" id="1_0qqmn"]
-[ext_resource type="Texture2D" uid="uid://db1jw16pej3gk" path="res://Resources/card_dagger.png" id="2_wf8id"]
-[ext_resource type="Texture2D" uid="uid://csacifplln4a5" path="res://Resources/card_spear.png" id="3_brehn"]
-[ext_resource type="Texture2D" uid="uid://cfhgpee11rits" path="res://Resources/card_sword.png" id="4_uf1hq"]
-[ext_resource type="Texture2D" uid="uid://bfpebuwqy4s3c" path="res://Resources/card_stumble.png" id="5_pyy63"]
-[ext_resource type="Texture2D" uid="uid://dlqyrnjppaqao" path="res://Resources/card_explore.png" id="5_sj14m"]
-[ext_resource type="Texture2D" uid="uid://bwxedpxkxfam1" path="res://Resources/card_ladder.png" id="6_pyy63"]
-[ext_resource type="Texture2D" uid="uid://cn7l2cqmf8lnf" path="res://Resources/card_boots.png" id="7_3b2om"]
-[ext_resource type="Texture2D" uid="uid://dr6xo7us0ykey" path="res://Resources/card_fountain.png" id="8_vsrr6"]
-[ext_resource type="Texture2D" uid="uid://8pfjemv1dju5" path="res://Resources/card_portal.png" id="9_lath7"]
-[ext_resource type="Texture2D" uid="uid://js6jhlst7fks" path="res://Resources/card_gem.png" id="10_dp72k"]
-[ext_resource type="Texture2D" uid="uid://3pshfkhmcm6u" path="res://Resources/card_treasure_chest.png" id="11_ot2lt"]
+[ext_resource type="Texture2D" uid="uid://dmj3f0jg6vnhn" path="res://Resources/card_dagger.png" id="2_wf8id"]
+[ext_resource type="Texture2D" uid="uid://dsgmysdyuaqvq" path="res://Resources/card_spear.png" id="3_brehn"]
+[ext_resource type="Texture2D" uid="uid://yp26emdvfmoc" path="res://Resources/card_sword.png" id="4_uf1hq"]
+[ext_resource type="Texture2D" uid="uid://fk8gm37u3l7h" path="res://Resources/card_stumble.png" id="5_pyy63"]
+[ext_resource type="Texture2D" uid="uid://cydco76qxsu81" path="res://Resources/card_explore.png" id="5_sj14m"]
+[ext_resource type="Texture2D" uid="uid://bugawup0pk32g" path="res://Resources/card_ladder.png" id="6_pyy63"]
+[ext_resource type="Texture2D" uid="uid://b6b61kyr2a3qj" path="res://Resources/card_boots.png" id="7_3b2om"]
+[ext_resource type="Texture2D" uid="uid://crk3xbh8jrjyr" path="res://Resources/card_fountain.png" id="8_vsrr6"]
+[ext_resource type="Texture2D" uid="uid://fdnvtajbufly" path="res://Resources/card_portal.png" id="9_lath7"]
+[ext_resource type="Texture2D" uid="uid://cemeq66tas1us" path="res://Resources/card_gem.png" id="10_dp72k"]
+[ext_resource type="Texture2D" uid="uid://oy634fy0vcxx" path="res://Resources/card_treasure_chest.png" id="11_ot2lt"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wxbh7"]
-size = Vector2(150, 177)
+[sub_resource type="LabelSettings" id="LabelSettings_sj14m"]
 
-[node name="Card_System" type="Node2D" unique_id=1456674367]
-scale = Vector2(0.8, 0.8)
+[node name="Card_System" type="Control" unique_id=340841930]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -480.0
+offset_bottom = -320.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_0qqmn")
 
-[node name="Dagger" type="Area2D" parent="." unique_id=1864814458]
-scale = Vector2(0.8000001, 0.8000001)
+[node name="Label" type="Label" parent="." unique_id=1304350932]
+layout_mode = 1
+offset_left = 361.0
+offset_top = 102.0
+offset_right = 480.0
+offset_bottom = 215.0
+theme_override_font_sizes/font_size = 24
+label_settings = SubResource("LabelSettings_sj14m")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Dagger" type="Sprite2D" parent="Dagger" unique_id=2104021353]
-scale = Vector2(0.8, 0.8)
+[node name="EndTurnButton" type="Button" parent="." unique_id=1586766660]
+layout_mode = 0
+offset_left = 419.0
+offset_top = 4.0
+offset_right = 480.0
+offset_bottom = 28.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1158525194]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1830593367]
+layout_mode = 2
+
+[node name="Dagger" type="Panel" parent="VBoxContainer/HBoxContainer" unique_id=475581394]
+layout_mode = 2
+
+[node name="Dagger" type="TextureRect" parent="VBoxContainer/HBoxContainer/Dagger" unique_id=362416703]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 texture = ExtResource("2_wf8id")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Dagger" unique_id=1876748221]
-scale = Vector2(0.8, 0.8)
-shape = SubResource("RectangleShape2D_wxbh7")
+[node name="Spear" type="Panel" parent="VBoxContainer/HBoxContainer" unique_id=784292214]
+layout_mode = 2
 
-[node name="Spear" type="Area2D" parent="." unique_id=335842696]
-scale = Vector2(0.8, 0.8)
-
-[node name="Spear" type="Sprite2D" parent="Spear" unique_id=1392378981]
-scale = Vector2(0.8, 0.8)
+[node name="Spear" type="TextureRect" parent="VBoxContainer/HBoxContainer/Spear" unique_id=271999109]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 texture = ExtResource("3_brehn")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Spear" unique_id=1545942881]
-scale = Vector2(0.8, 0.8)
-shape = SubResource("RectangleShape2D_wxbh7")
+[node name="Sword" type="Panel" parent="VBoxContainer/HBoxContainer" unique_id=171296665]
+layout_mode = 2
 
-[node name="Sword" type="Area2D" parent="." unique_id=936941077]
-scale = Vector2(0.8, 0.8)
-
-[node name="Sword" type="Sprite2D" parent="Sword" unique_id=1644857651]
-scale = Vector2(0.8, 0.8)
+[node name="Sword" type="TextureRect" parent="VBoxContainer/HBoxContainer/Sword" unique_id=1638929546]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 texture = ExtResource("4_uf1hq")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword" unique_id=1628301365]
-scale = Vector2(0.8, 0.8)
-shape = SubResource("RectangleShape2D_wxbh7")
+[node name="Stumble" type="Panel" parent="VBoxContainer/HBoxContainer" unique_id=441738012]
+layout_mode = 2
 
-[node name="Stumble" type="Area2D" parent="." unique_id=2076518572]
-scale = Vector2(0.8, 0.8)
-
-[node name="Stumble" type="Sprite2D" parent="Stumble" unique_id=1101215507]
-scale = Vector2(0.8, 0.8)
+[node name="Stumble" type="TextureRect" parent="VBoxContainer/HBoxContainer/Stumble" unique_id=1627462036]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 texture = ExtResource("5_pyy63")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Stumble" unique_id=1976059814]
-scale = Vector2(0.8, 0.8)
-shape = SubResource("RectangleShape2D_wxbh7")
+[node name="Explore" type="Panel" parent="VBoxContainer/HBoxContainer" unique_id=789243973]
+layout_mode = 2
 
-[node name="Explore" type="Area2D" parent="." unique_id=841411998]
-scale = Vector2(0.8, 0.8)
-
-[node name="Explore" type="Sprite2D" parent="Explore" unique_id=445674704]
-scale = Vector2(0.8, 0.8)
+[node name="Explore" type="TextureRect" parent="VBoxContainer/HBoxContainer/Explore" unique_id=1069405033]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 texture = ExtResource("5_sj14m")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Explore" unique_id=102251304]
-scale = Vector2(0.8, 0.8)
-shape = SubResource("RectangleShape2D_wxbh7")
+[node name="Ladder" type="Panel" parent="VBoxContainer/HBoxContainer" unique_id=1330035261]
+layout_mode = 2
 
-[node name="Ladder" type="Area2D" parent="." unique_id=1284973831]
-scale = Vector2(0.8, 0.8)
-
-[node name="Ladder" type="Sprite2D" parent="Ladder" unique_id=6582305]
-scale = Vector2(0.8, 0.8)
+[node name="Ladder" type="TextureRect" parent="VBoxContainer/HBoxContainer/Ladder" unique_id=630504880]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 texture = ExtResource("6_pyy63")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ladder" unique_id=1760160095]
-scale = Vector2(0.8, 0.8)
-shape = SubResource("RectangleShape2D_wxbh7")
+[node name="Boots" type="Panel" parent="VBoxContainer/HBoxContainer" unique_id=287255480]
+layout_mode = 2
 
-[node name="Boots" type="Area2D" parent="." unique_id=2104596690]
-scale = Vector2(0.8, 0.8)
-
-[node name="Boots" type="Sprite2D" parent="Boots" unique_id=1576053678]
-scale = Vector2(0.8, 0.8)
+[node name="Boots" type="TextureRect" parent="VBoxContainer/HBoxContainer/Boots" unique_id=2087809612]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 texture = ExtResource("7_3b2om")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Boots" unique_id=515435935]
-scale = Vector2(0.8, 0.8)
-shape = SubResource("RectangleShape2D_wxbh7")
+[node name="Fountain" type="Panel" parent="VBoxContainer/HBoxContainer" unique_id=503676408]
+layout_mode = 2
 
-[node name="Fountain" type="Area2D" parent="." unique_id=1176670938]
-scale = Vector2(0.8, 0.8)
-
-[node name="Fountain" type="Sprite2D" parent="Fountain" unique_id=1660151954]
-scale = Vector2(0.8, 0.8)
+[node name="Fountain" type="TextureRect" parent="VBoxContainer/HBoxContainer/Fountain" unique_id=1560213138]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 texture = ExtResource("8_vsrr6")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Fountain" unique_id=1481464262]
-scale = Vector2(0.8, 0.8)
-shape = SubResource("RectangleShape2D_wxbh7")
+[node name="Portal" type="Panel" parent="VBoxContainer/HBoxContainer" unique_id=1085697519]
+layout_mode = 2
 
-[node name="Portal" type="Area2D" parent="." unique_id=938905496]
-scale = Vector2(0.8, 0.8)
-
-[node name="Portal" type="Sprite2D" parent="Portal" unique_id=360556807]
-scale = Vector2(0.8, 0.8)
+[node name="Portal" type="TextureRect" parent="VBoxContainer/HBoxContainer/Portal" unique_id=1423984512]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 texture = ExtResource("9_lath7")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Portal" unique_id=379583972]
-scale = Vector2(0.8, 0.8)
-shape = SubResource("RectangleShape2D_wxbh7")
+[node name="Gem" type="Panel" parent="VBoxContainer/HBoxContainer" unique_id=427677427]
+layout_mode = 2
 
-[node name="Gem" type="Area2D" parent="." unique_id=960450660]
-scale = Vector2(0.8, 0.8)
-
-[node name="Gem" type="Sprite2D" parent="Gem" unique_id=1151475861]
-scale = Vector2(0.8, 0.8)
+[node name="Gem" type="TextureRect" parent="VBoxContainer/HBoxContainer/Gem" unique_id=627092757]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 texture = ExtResource("10_dp72k")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Gem" unique_id=964550388]
-scale = Vector2(0.8, 0.8)
-shape = SubResource("RectangleShape2D_wxbh7")
+[node name="TreasureChest" type="Panel" parent="VBoxContainer/HBoxContainer" unique_id=1636908554]
+layout_mode = 2
 
-[node name="TreasureChest" type="Area2D" parent="." unique_id=1547539240]
-scale = Vector2(0.8, 0.8)
-
-[node name="TreasureChest" type="Sprite2D" parent="TreasureChest" unique_id=1369923979]
-scale = Vector2(0.8, 0.8)
+[node name="TreasureChest" type="TextureRect" parent="VBoxContainer/HBoxContainer/TreasureChest" unique_id=26722081]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 texture = ExtResource("11_ot2lt")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TreasureChest" unique_id=820165636]
-scale = Vector2(0.8, 0.8)
-shape = SubResource("RectangleShape2D_wxbh7")
+[connection signal="pressed" from="EndTurnButton" to="." method="_on_end_turn_button_pressed"]

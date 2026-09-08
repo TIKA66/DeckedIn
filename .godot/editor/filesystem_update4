@@ -1,3 +1,5 @@
+res://Scenes/card.tscn
+res://Scripts/cards.gd
+res://Scripts/global_data.gd
 res://Scenes/main.tscn
-res://Scenes/main.gd
-res://Scripts/monster.gd
+res://Scenes/movement.tscn

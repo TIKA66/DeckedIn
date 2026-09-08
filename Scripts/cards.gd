@@ -1,10 +1,10 @@
 '''
 Filename: Card_Sytem.gd
-Version: 1.0
+Version: 2.5
 Purpose: To set up the card system to connect to the overall game; 
 		to initialise the starting, shuffling, selecting, processing, and ending a turn with the cards
-Date: 5/09/2026
-Author: Aikantika Banerjee
+Date: 5/09/2026 - 9/09/26
+Author: Aikantika Banerjee & Elliot Slota
 '''
 
 #Imports and initialising the system
@@ -29,26 +29,56 @@ var player_gold: int = 0 # Intialises the intial amount of gold the user has
 # CARD SELECTION INPUT
 var selected_card_index: int = 0
 var card_confirmed: bool = false
+var card_sprites: Array[TextureRect] = []
+
+# COLOUR FOR SELECTED CARD - changes the colour of the card currently being selected
+const SELECTED_CARD_COLOUR: Color = Color(1.0, 0.357, 0.516, 1.0)
+# COLOUR FOR UNSELECTED CARD - keeps cards at their normal colour when they are not selected
+const UNSELECTED_CARD_COLOUR: Color = Color(1.0, 1.0, 1.0, 1.0)
 
 # INFO FOR OTHER SYSTEMS - used specifically for the other nodes & scripts
 #BOOLEAN: A data type that stores one of two possible values: true or false. It is commonly used to represent a state or condition.
 var dragon_triggered: bool = false # A Dragon Attack is assigned here, to show the probabilities that some of the cards have of triggering the dragon, and thus ending the game
 var portal_used: bool = false # Whether the portal is used, relates to the movement on the map
 var cards_drawn: int = 0
-var card_sprites: Array[Sprite2D] = []
 
 # FUNCTION: A reusable block of code that performs a specific task when it is called. Functions can accept parameters and return a value.
 # INITIALISE THE SYSTEM
 func _ready() -> void:
+	print("=== CARD SYSTEM DEBUG ===")
+	print("Current node: ", get_path())
+	print("Children of Cards:")
+	
+	for child in get_children():
+		print(" - ", child.name)
+	
+	print("VBoxContainer exists: ", has_node("VBoxContainer"))
+	print("HBoxContainer exists: ", has_node("VBoxContainer/HBoxContainer"))
+	print("Dagger container exists: ", has_node("VBoxContainer/HBoxContainer/Dagger"))
+	print("Dagger texture exists: ", has_node("VBoxContainer/HBoxContainer/Dagger/Dagger"))
+	
 	# Initialise the card_sprites array
-	card_sprites = [$Dagger/Dagger, $Spear/Spear, $Sword/Sword, $Stumble/Stumble, $Explore/Explore, $Ladder/Ladder, $Boots/Boots, $Fountain/Fountain, $Portal/Portal, $Gem/Gem, $TreasureChest/TreasureChest]
+	card_sprites = [
+		$VBoxContainer/HBoxContainer/Dagger/Dagger,
+		$VBoxContainer/HBoxContainer/Spear/Spear,
+		$VBoxContainer/HBoxContainer/Sword/Sword,
+		$VBoxContainer/HBoxContainer/Stumble/Stumble,
+		$VBoxContainer/HBoxContainer/Explore/Explore,
+		$VBoxContainer/HBoxContainer/Ladder/Ladder,
+		$VBoxContainer/HBoxContainer/Boots/Boots,
+		$VBoxContainer/HBoxContainer/Fountain/Fountain,
+		$VBoxContainer/HBoxContainer/Portal/Portal,
+		$VBoxContainer/HBoxContainer/Gem/Gem,
+		$VBoxContainer/HBoxContainer/TreasureChest/TreasureChest
+	]
 	for i in range(card_sprites.size()):
 		print("Sprite ", i, ": ", card_sprites[i])
 	create_deck() # From the intialisation of the system to redirect to the next function of create_deck()
 	shuffle_deck() # After the previous statement is completed, the system will redirect to this next function shuffle_deck()
+	start_turn()
+	show_hand()
 	print("Card system ready.") # DEBUDDING STATEMENT FOR INTERNAL SYSTEM
 	print("Deck size: ", deck.size()) # DEBUGGING STATEMENT FOR INTERNAL SYSTEM
-	show_hand()
 
 # CARD CREATION - sets up the strucutre to create the deck of cards
 func create_card(
@@ -75,17 +105,17 @@ func create_card(
 # CREATE THE DECK - sets up each individual cards & its properties according to the card's structure as set up previously
 func create_deck() -> void: # Allows easy change in terms of card's properties or to add any card for expansioning in the future
 	deck.clear() # To remove the previous game's deck
-	add_card_copies("Dagger", "weapon", 1, 0, 0, false, 3, $Dagger/Dagger) # Redirect to the add_card_copies function
-	add_card_copies("Spear", "weapon", 2, 0, 0, false, 2, $Spear/Spear)
-	add_card_copies("Sword", "weapon", 3, 0, 0, false, 1, $Sword/Sword)
-	add_card_copies("Stumble", "movement", 0, 1, 0, true, 2, $Stumble/Stumble)
-	add_card_copies("Explore", "movement", 0, 1, 0, false, 2, $Explore/Explore)
-	add_card_copies("Ladder", "movement", 0, 2, 0, false, 4, $Ladder/Ladder)
-	add_card_copies("Boots", "movement", 0, 3, 0, false, 2, $Boots/Boots)
-	add_card_copies("Fountain", "item", 0, 0, 0, false, 3, $Fountain/Fountain)
-	add_card_copies("Portal", "item", 0, 0, 0, false, 3, $Portal/Portal)
-	add_card_copies("Gem", "item", 0, 0, 5, false, 2, $Gem/Gem)
-	add_card_copies("Treasure Chest", "item", 0, 0, 10, true, 1, $TreasureChest/TreasureChest)
+	add_card_copies("Dagger", "weapon", 1, 0, 0, false, 3, $VBoxContainer/HBoxContainer/Dagger/Dagger) # Redirect to the add_card_copies function
+	add_card_copies("Spear", "weapon", 2, 0, 0, false, 2, $VBoxContainer/HBoxContainer/Spear/Spear)
+	add_card_copies("Sword", "weapon", 3, 0, 0, false, 1, $VBoxContainer/HBoxContainer/Sword/Sword)
+	add_card_copies("Stumble", "movement", 0, 1, 0, true, 2, $VBoxContainer/HBoxContainer/Stumble/Stumble)
+	add_card_copies("Explore", "movement", 0, 1, 0, false, 2, $VBoxContainer/HBoxContainer/Explore/Explore)
+	add_card_copies("Ladder", "movement", 0, 2, 0, false, 4, $VBoxContainer/HBoxContainer/Ladder/Ladder)
+	add_card_copies("Boots", "movement", 0, 3, 0, false, 2, $VBoxContainer/HBoxContainer/Boots/Boots)
+	add_card_copies("Fountain", "item", 0, 0, 0, false, 3, $VBoxContainer/HBoxContainer/Fountain/Fountain)
+	add_card_copies("Portal", "item", 0, 0, 0, false, 3, $VBoxContainer/HBoxContainer/Portal/Portal)
+	add_card_copies("Gem", "item", 0, 0, 5, false, 2, $VBoxContainer/HBoxContainer/Gem/Gem)
+	add_card_copies("Treasure Chest", "item", 0, 0, 10, true, 1, $VBoxContainer/HBoxContainer/TreasureChest/TreasureChest)
 	print("Created ", deck.size(), " cards.") # DEBUGGING STATEMENT FOR THE INTERNAL SYSTEM
 
 # ADD COPIES OF CARD - ensures all components are written with the correct data type & then creates that manny cards to 
@@ -101,73 +131,17 @@ func shuffle_deck() -> void:
 # START TURN - begins the user's turn with the initial assignment of variables to reset each turn
 func start_turn() -> void:
 	player_turn = true
+	print("PLAYER TURN: ", player_turn)
 	available_attack = 0
 	available_movement = 0
 	dragon_triggered = false
 	portal_used = false
 	draw_hand()
-	selected_card_index = 0
-	card_confirmed = false
-	update_card_selection()
-	print("PASSED") # DEBUGGING STATEMENT FOR THE INTERNAL SYSTEM
-
-# CARD INPUT - allows the player to move between cards and select them
-func _input(event: InputEvent) -> void:
-	if not player_turn:
-		return
-	if event is InputEventKey and event.pressed and not event.echo:
-		# Move selection left
-		if event.keycode == KEY_LEFT:
-			selected_card_index -= 1
-			if selected_card_index < 0:
-				selected_card_index = hand.size() - 1
-			update_card_selection()
-		# Move selection right
-		elif event.keycode == KEY_RIGHT:
-			selected_card_index += 1
-
-			if selected_card_index >= hand.size():
-				selected_card_index = 0
-			update_card_selection()
-		# Select or confirm card
-		elif event.keycode == KEY_SPACE:
-			if not card_confirmed:
-				select_card_for_confirmation()
-			else:
-				confirm_card_selection()
-
-# INPUT PROCESS #1 - press space bar for the first confirmation
-func select_card_for_confirmation() -> void:
-	if hand.is_empty():
-		return
-	var selected_card: Dictionary = hand[selected_card_index]
-	if selected_card["use"] == true:
-		print("This card has already been used.")
-		return
-	card_confirmed = true
-	print("Selected: ", selected_card["name"])
-	print("Press SPACE again to confirm.")
-
-# INPUT PROCESS #2 - pr
-func confirm_card_selection() -> void:
-	if hand.is_empty():
-		return
-	print("Card confirmed.")
-	select_card(selected_card_index)
-	card_confirmed = false
-	# Reset selection to the first remaining card
-	selected_card_index = 0
 	show_hand()
+	selected_card_index = 0
+	card_confirmed = false
 	update_card_selection()
-
-# INPUT PROCESS #3 -
-func update_card_selection() -> void:
-	for i in range(hand.size()):
-		var card_sprite: Sprite2D = hand[i]["sprite"]
-		if i == selected_card_index:
-			card_sprite.scale = Vector2(1.2, 1.2)
-		else:
-			card_sprite.scale = Vector2(1, 1)
+	print("PASSED")
 
 # DRAW HAND
 func draw_hand() -> void:
@@ -198,16 +172,6 @@ func draw_one_card() -> void:
 	cards_drawn += 1
 	print("PASSED") # DEBUGGING STATEMENT FOR THE INTERNAL SYSTEM
 
-# SHOW HAND - visually, show all the cards in the hand
-func show_hand() -> void:
-	for sprite in card_sprites:
-		sprite.visible = false
-
-	for i in range(hand.size()):
-		var card_sprite: Sprite2D = hand[i]["sprite"]
-		card_sprite.visible = true
-		card_sprite.position = Vector2(200 + (i * 150), 500)
-
 # RESHUFFLE
 func reshuffle_discard() -> void:
 	deck.append_array(discard_pile)
@@ -215,17 +179,128 @@ func reshuffle_discard() -> void:
 	shuffle_deck()
 	print("PASSED") # DEBUGGING STATEMENT FOR THE INTERNAL SYSTEM
 
+# CARD INPUT - allows the player to move between cards and select them
+# CARD SELECTION INPUT
+func _input(event: InputEvent) -> void:
+	if not player_turn:
+		return
+	if event.is_action_pressed("ui_left"):
+		selected_card_index -= 1
+		if selected_card_index < 0:
+			selected_card_index = hand.size() - 1
+		card_confirmed = false
+		print("left")
+		print(selected_card_index)
+		update_card_selection()
+	elif event.is_action_pressed("ui_right"):
+		selected_card_index += 1 
+		if selected_card_index >= hand.size():
+			selected_card_index = 0
+		card_confirmed = false
+		print("right")
+		print(selected_card_index)
+		update_card_selection()
+	elif event.is_action_pressed("ui_accept"):
+		if not card_confirmed:
+			select_card_for_confirmation()
+		else:
+			confirm_card_selection()
+
+# INPUT PROCESS #1 - press space bar for the first confirmation
+func select_card_for_confirmation() -> void:
+	if hand.is_empty():
+		return
+	var selected_card: Dictionary = hand[selected_card_index]
+	if selected_card["use"] == true:
+		$Label.text = "This card has already been used."
+		return
+	card_confirmed = true
+	$Label.text = str("Selected: ", selected_card["name"])
+	$Label.text = str("Type: ", selected_card["type"])
+	if selected_card["type"] == "weapon":
+		$Label.text = str("Attack: ", selected_card["attack"])
+	elif selected_card["type"] == "movement":
+		$Label.text = str("Movement: ", selected_card["movement"])
+	elif selected_card["type"] == "item":
+		$Label.text = str("Item selected.")
+	$Label.text = str("Press SPACE again to confirm.")
+
+# INPUT PROCESS #2 - confirms the selected card
+func confirm_card_selection() -> void:
+	if hand.is_empty():
+		return
+	$Label.text = str("Card confirmed.")
+	select_card(selected_card_index)
+	card_confirmed = false
+	selected_card_index = 0
+	# Hide all remaining cards
+	for card in hand:
+		var card_texture: TextureRect = card["sprite"]
+		var card_container = card_texture.get_parent()
+		card_container.visible = false 
+	$Label.hide()
+	update_card_selection()
+
+# INPUT PROCESS #3 - visually shows which card is currently selected
+func update_card_selection() -> void:
+	print("=== UPDATE SELECTION ===")
+	print("Selected index: ", selected_card_index)
+	print("Hand size: ", hand.size())
+	for i in range(hand.size()):
+		var card_texture: TextureRect = hand[i]["sprite"]
+		var card_container = card_texture.get_parent()
+		if i == selected_card_index:
+			card_container.scale = Vector2(0.4, 0.4) # Selected card becomes slightly larger
+			card_texture.modulate = SELECTED_CARD_COLOUR
+			card_container.z_index = 1 # Make the selected card appear above the others
+		else:
+			card_container.scale = Vector2(0.4, 0.4) # All unselected cards stay at their normal size
+			card_texture.modulate = UNSELECTED_CARD_COLOUR # Return unselected cards to normal layer
+			card_container.z_index = 0
+
+# SHOW HAND - visually, showing the 5 cards in the hand in a row
+func show_hand() -> void:
+	var card_row = $VBoxContainer/HBoxContainer
+	# Remove previously created card copies
+	for card_container in card_row.get_children():
+		if card_container.has_meta("hand_card"):
+			card_container.queue_free()
+	# Set the VBoxContainer to occupy the bottom half of the screen
+	$VBoxContainer.position = Vector2(0, 180)
+	$VBoxContainer.size = Vector2(480, 180)
+	# Set the HBoxContainer to cover the width of the bottom half
+	card_row.position = Vector2(15, 0)
+	card_row.size = Vector2(480, 180)
+	card_row.custom_minimum_size = Vector2(480, 160)
+	card_row.size_flags_horizontal = Control.SIZE_FILL
+	card_row.size_flags_vertical = Control.SIZE_FILL
+	card_row.alignment = BoxContainer.ALIGNMENT_CENTER # Place the five cards in the centre of the row
+	card_row.add_theme_constant_override("separation", 5) # Small equal gap between cards
+	# Hide the original card templates
+	for card_container in card_row.get_children():
+		card_container.visible = false
+	# Show ONLY the cards that were randomly drawn into the hand
+	for card in hand:
+		# Get the original card container
+		var original_texture: TextureRect = card["sprite"]
+		var original_card = original_texture.get_parent()
+		var card_copy = original_card.duplicate() # Create a separate visual copy
+		card_copy.set_meta("hand_card", true) # Mark the copy as a hand card
+		card_row.add_child(card_copy) # Add the copied card to the row
+		card_copy.visible = true
+		card_copy.custom_minimum_size = Vector2(80, 100) # Give every card the same base size
+		card_copy.scale = Vector2(0.4, 0.4) # Set the NORMAL card size
+		var copied_texture: TextureRect = card_copy.get_node(NodePath(original_texture.name)) # Find the TextureRect inside the copied card
+		copied_texture.modulate = UNSELECTED_CARD_COLOUR # Reset its colour
+		card["sprite"] = copied_texture # Store the copied TextureRect in the card
+
 # SELECT CARD - for the turn, the user is able to select a card
 func select_card(card_index: int) -> bool:
 	# Check that selected card exists
 	if card_index < 0 or card_index >= hand.size():
-		print("Invalid card selection.")
+		$Label.text = str("Invalid card selection.")
 		return false
 	var selected_card: Dictionary = hand[card_index]
-	# Checks whether the selected card has been used
-	if selected_card["use"] == true: # Debugging
-		print("This card has already been used.")
-		return false
 	# Process card
 	process_card(card_index) # Redirects to the next section
 	return true
@@ -282,6 +357,11 @@ func end_turn() -> void:
 	print(available_movement) # DEBUGGING STATEMENT FOR THE INTERNAL SYSTEM
 	print(available_attack) # DEBUGGING STATEMENT FOR THE INTERNAL SYSTEM
 
+# HIDE HAND - easy to call function -> meant for organisation
+func hide_hand() -> void:
+	for card_container in $VBoxContainer/HBoxContainer.get_children():
+		card_container.visible = false
+
 # FOLLOWING FUNCTIONS ARE FOCUSED TOWARDS OTHER SYSTEM AND SCRIPTS, TO ENSURE ORGANISATION, MAINTAINANCE & EFFICIENCY
 
 # GET CARD
@@ -307,3 +387,7 @@ func reset_card_flags() -> void:
 	dragon_triggered = false
 	portal_used = false
 	cards_drawn = 0
+
+
+func _on_end_turn_button_pressed() -> void:
+	end_turn()
