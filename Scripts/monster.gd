@@ -2,6 +2,11 @@ extends Node2D
 
 var available_monsters: Array = []
 
+func _ready() -> void:
+	create_monster_stack()
+	print(available_monsters)
+
+
 func create_monster(
 	monster_name: String,
 	type: String,
@@ -44,3 +49,10 @@ func select_monster():
 #WRITE FIGHTING
 func fight_monster():
 	pass
+
+func _on_end_turn_pressed() -> void:
+	$"../Card_System".player_turn = false
+	#if player ended turn while a monster is still alive in current room
+	if Map.map[$"../Movement".player_position]["monsters"]["health"] > 0:
+		$"../Card_System".player_health -= Map.map[$"../Movement".player_position]["monsters"]["attack"]
+		print("You have been attacked.")

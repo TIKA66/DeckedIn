@@ -1,16 +1,17 @@
 [gd_scene format=3 uid="uid://b0efnx7pamvx8"]
 
 [ext_resource type="Script" uid="uid://b8ig2j2jhc1j0" path="res://Scripts/cards.gd" id="1_0qqmn"]
-[ext_resource type="Texture2D" uid="uid://cqh71p158fmro" path="res://Resources/card_dagger.png" id="2_wf8id"]
-[ext_resource type="Texture2D" uid="uid://mh3qsv8xrt0a" path="res://Resources/card_spear.png" id="3_brehn"]
-[ext_resource type="Texture2D" uid="uid://ducvuh33wpha2" path="res://Resources/card_sword.png" id="4_uf1hq"]
-[ext_resource type="Texture2D" uid="uid://c1udw1vmcap38" path="res://Resources/card_explore.png" id="5_sj14m"]
-[ext_resource type="Texture2D" uid="uid://b51o2k6cvcgai" path="res://Resources/card_ladder.png" id="6_pyy63"]
-[ext_resource type="Texture2D" uid="uid://bthoh3px7shhl" path="res://Resources/card_boots.png" id="7_3b2om"]
-[ext_resource type="Texture2D" uid="uid://bjaf5n2rx32k8" path="res://Resources/card_fountain.png" id="8_vsrr6"]
-[ext_resource type="Texture2D" uid="uid://c4xq07ijpcpve" path="res://Resources/card_portal.png" id="9_lath7"]
-[ext_resource type="Texture2D" uid="uid://btatbje2mnmao" path="res://Resources/card_gem.png" id="10_dp72k"]
-[ext_resource type="Texture2D" uid="uid://7xyy071aldlc" path="res://Resources/card_treasure_chest.png" id="11_ot2lt"]
+[ext_resource type="Texture2D" uid="uid://db1jw16pej3gk" path="res://Resources/card_dagger.png" id="2_wf8id"]
+[ext_resource type="Texture2D" uid="uid://csacifplln4a5" path="res://Resources/card_spear.png" id="3_brehn"]
+[ext_resource type="Texture2D" uid="uid://cfhgpee11rits" path="res://Resources/card_sword.png" id="4_uf1hq"]
+[ext_resource type="Texture2D" uid="uid://bfpebuwqy4s3c" path="res://Resources/card_stumble.png" id="5_pyy63"]
+[ext_resource type="Texture2D" uid="uid://dlqyrnjppaqao" path="res://Resources/card_explore.png" id="5_sj14m"]
+[ext_resource type="Texture2D" uid="uid://bwxedpxkxfam1" path="res://Resources/card_ladder.png" id="6_pyy63"]
+[ext_resource type="Texture2D" uid="uid://cn7l2cqmf8lnf" path="res://Resources/card_boots.png" id="7_3b2om"]
+[ext_resource type="Texture2D" uid="uid://dr6xo7us0ykey" path="res://Resources/card_fountain.png" id="8_vsrr6"]
+[ext_resource type="Texture2D" uid="uid://8pfjemv1dju5" path="res://Resources/card_portal.png" id="9_lath7"]
+[ext_resource type="Texture2D" uid="uid://js6jhlst7fks" path="res://Resources/card_gem.png" id="10_dp72k"]
+[ext_resource type="Texture2D" uid="uid://3pshfkhmcm6u" path="res://Resources/card_treasure_chest.png" id="11_ot2lt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wxbh7"]
 size = Vector2(150, 177)
@@ -57,7 +58,7 @@ scale = Vector2(0.8, 0.8)
 
 [node name="Stumble" type="Sprite2D" parent="Stumble" unique_id=1101215507]
 scale = Vector2(0.8, 0.8)
-texture = ExtResource("2_wf8id")
+texture = ExtResource("5_pyy63")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stumble" unique_id=1976059814]
 scale = Vector2(0.8, 0.8)

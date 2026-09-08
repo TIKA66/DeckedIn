@@ -9,10 +9,10 @@ Author: Elliot Slota & Tika Banerjee
 extends Node2D
 
 #NULL - a variable that points to a non-existent object, in this case to be initialised later
-var player_position = Map.map[1]["room"]
+var player_position = null
 var selected_room = null # Stores the room the player wishes to move to
 var movement_cost: int = 0 # stores the cost to move to a selected room
-var adjacent_rooms: Array = Map.map[player_position]["adjacent_rooms"]
+var adjacent_rooms = null
 
 #func _ready() -> void:
 	#current_room()
@@ -31,6 +31,7 @@ func start_movement() -> void:
 
 # DISPLAY ADJACENT ROOMS - show adjacent rooms
 func display_adjacent_rooms() -> void:
+	adjacent_rooms = Map.map[player_position]["adjacent_rooms"]
 	print("Adjacent rooms:")
 	for room in adjacent_rooms:
 		print("  Room: ", room)
@@ -63,7 +64,7 @@ func move_player() -> void:
 	adjacent_rooms = Map.map[player_position]["adjacent_rooms"] #Set new adjacent rooms based on new position
 	print("Player moved to room: ", player_position) # DEBUGGING
 	display_room() # Show the new room. Room type is revealed only after entering.
-	set_artefact() # Reset artefact position to the new adjacent rooms
+	place_artefact() # Reset artefact position to the new adjacent rooms
 
 # DISPLAY ROOM - display the current room
 func display_room() -> void:
@@ -75,7 +76,7 @@ func display_room() -> void:
 		#print("Displaying item: ", Map.map[player_position]["monsters"])
 
 # SET ARTEFACT- set artefact position to a random room of the player's adjacent rooms
-func set_artefact() -> void:
+func place_artefact() -> void:
 	$Artefact.random_artefact_room = randi_range(0, adjacent_rooms.size())
 	print("artefact position chosen ", $Artefact.random_artefact_room, "nd spot out of adjacent rooms: ", adjacent_rooms) #DEBUGGING
 	$Artefact.artefact_position = adjacent_rooms[$Artefact.random_artefact_room]
@@ -91,7 +92,7 @@ func set_artefact() -> void:
 func current_room() -> void:
 	display_room()
 	display_adjacent_rooms()
-	$Artefact.found_check()
+	$Artefact.found_check() #check whether artefact is in room with player
 	match Map.map[player_position]["type"]: #determine which type of room to start displaying
 		"starting":
 			$Rooms.starting()
