@@ -12,32 +12,28 @@
 [ext_resource type="Texture2D" uid="uid://c4xq07ijpcpve" path="res://Resources/card_portal.png" id="9_lath7"]
 [ext_resource type="Texture2D" uid="uid://btatbje2mnmao" path="res://Resources/card_gem.png" id="10_dp72k"]
 [ext_resource type="Texture2D" uid="uid://7xyy071aldlc" path="res://Resources/card_treasure_chest.png" id="11_ot2lt"]
-[ext_resource type="Script" uid="uid://co8tqjmp4i4wo" path="res://Scripts/global_data.gd" id="12_sj14m"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_sj14m"]
 
 [node name="Card_System" type="Control" unique_id=340841930]
 layout_mode = 3
-anchors_preset = 0
-scale = Vector2(0.8, 0.8)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -480.0
+offset_bottom = -320.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_0qqmn")
-
-[node name="Global_Data" type="Node2D" parent="." unique_id=65284517]
-script = ExtResource("12_sj14m")
-
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1792653633]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1732725674]
 layout_mode = 0
-offset_right = 601.24994
-offset_bottom = 399.99997
+offset_right = 40.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1073706315]
 layout_mode = 2
 offset_transform_enabled = true
-offset_transform_position = Vector2(-210, 0)
-offset_transform_scale = Vector2(0.8, 0.8)
+offset_transform_scale = Vector2(0.5, 0.5)
 
 [node name="Dagger" type="Panel" parent="VBoxContainer/HBoxContainer" unique_id=1986282766]
 layout_mode = 2
@@ -100,8 +96,8 @@ layout_mode = 2
 
 [node name="Boots" type="TextureRect" parent="VBoxContainer/HBoxContainer/Boots" unique_id=1875801651]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 142.0
+offset_bottom = 172.0
 texture = ExtResource("7_3b2om")
 
 [node name="Fountain" type="Panel" parent="VBoxContainer/HBoxContainer" unique_id=1009854093]
@@ -139,3 +135,23 @@ layout_mode = 0
 offset_right = 142.0
 offset_bottom = 172.0
 texture = ExtResource("11_ot2lt")
+
+[node name="Label" type="Label" parent="." unique_id=1304350932]
+layout_mode = 1
+offset_left = 361.0
+offset_top = 102.0
+offset_right = 480.0
+offset_bottom = 215.0
+theme_override_font_sizes/font_size = 24
+label_settings = SubResource("LabelSettings_sj14m")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EndTurnButton" type="Button" parent="." unique_id=1586766660]
+layout_mode = 0
+offset_left = 419.0
+offset_top = 4.0
+offset_right = 480.0
+offset_bottom = 28.0
+
+[connection signal="pressed" from="EndTurnButton" to="." method="_on_end_turn_button_pressed"]

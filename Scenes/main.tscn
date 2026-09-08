@@ -12,13 +12,24 @@
 script = ExtResource("1_jjvhh")
 
 [node name="Card_System" parent="." unique_id=1456674367 instance=ExtResource("1_8gbba")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = -3.0
+offset_bottom = -3.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="Rooms" parent="." unique_id=210182496 instance=ExtResource("2_jjvhh")]
+position = Vector2(0, 1)
 
 [node name="Monster" parent="." unique_id=313302047 instance=ExtResource("3_kry3j")]
 script = ExtResource("5_kry3j")
 
 [node name="Movement" parent="." unique_id=1919449938 instance=ExtResource("6_21xkr")]
+position = Vector2(160, -60)
 
 [node name="Map" parent="." unique_id=394942759 instance=ExtResource("7_6bp64")]
 

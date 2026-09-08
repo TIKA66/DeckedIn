@@ -4,7 +4,7 @@ Version: 2.5
 Purpose: To set up the card system to connect to the overall game; 
 		to initialise the starting, shuffling, selecting, processing, and ending a turn with the cards
 Date: 5/09/2026 - 9/09/26
-Author: Aikantika Banerjee
+Author: Aikantika Banerjee & Elliot Slota
 '''
 
 #Imports and initialising the system
@@ -31,6 +31,11 @@ var selected_card_index: int = 0
 var card_confirmed: bool = false
 var card_sprites: Array[TextureRect] = []
 
+# COLOUR FOR SELECTED CARD - changes the colour of the card currently being selected
+const SELECTED_CARD_COLOUR: Color = Color(1.0, 0.357, 0.516, 1.0)
+# COLOUR FOR UNSELECTED CARD - keeps cards at their normal colour when they are not selected
+const UNSELECTED_CARD_COLOUR: Color = Color(1.0, 1.0, 1.0, 1.0)
+
 # INFO FOR OTHER SYSTEMS - used specifically for the other nodes & scripts
 #BOOLEAN: A data type that stores one of two possible values: true or false. It is commonly used to represent a state or condition.
 var dragon_triggered: bool = false # A Dragon Attack is assigned here, to show the probabilities that some of the cards have of triggering the dragon, and thus ending the game
@@ -56,8 +61,11 @@ func _ready() -> void:
 	]
 	for i in range(card_sprites.size()):
 		print("Sprite ", i, ": ", card_sprites[i])
+	$Label.show()
 	create_deck() # From the intialisation of the system to redirect to the next function of create_deck()
 	shuffle_deck() # After the previous statement is completed, the system will redirect to this next function shuffle_deck()
+	start_turn()
+	show_hand()
 	print("Card system ready.") # DEBUDDING STATEMENT FOR INTERNAL SYSTEM
 	print("Deck size: ", deck.size()) # DEBUGGING STATEMENT FOR INTERNAL SYSTEM
 
@@ -112,6 +120,7 @@ func shuffle_deck() -> void:
 # START TURN - begins the user's turn with the initial assignment of variables to reset each turn
 func start_turn() -> void:
 	player_turn = true
+	print("PLAYER TURN: ", player_turn)
 	available_attack = 0
 	available_movement = 0
 	dragon_triggered = false
@@ -121,7 +130,7 @@ func start_turn() -> void:
 	selected_card_index = 0
 	card_confirmed = false
 	update_card_selection()
-	print("PASSED") # DEBUGGING STATEMENT FOR THE INTERNAL SYSTEM
+	print("PASSED")
 
 # DRAW HAND
 func draw_hand() -> void:
@@ -159,7 +168,6 @@ func reshuffle_discard() -> void:
 	shuffle_deck()
 	print("PASSED") # DEBUGGING STATEMENT FOR THE INTERNAL SYSTEM
 
-
 # CARD INPUT - allows the player to move between cards and select them
 # CARD SELECTION INPUT
 func _input(event: InputEvent) -> void:
@@ -170,12 +178,16 @@ func _input(event: InputEvent) -> void:
 		if selected_card_index < 0:
 			selected_card_index = hand.size() - 1
 		card_confirmed = false
+		print("left")
+		print(selected_card_index)
 		update_card_selection()
 	elif event.is_action_pressed("ui_right"):
-		selected_card_index += 1
+		selected_card_index += 1 
 		if selected_card_index >= hand.size():
 			selected_card_index = 0
 		card_confirmed = false
+		print("right")
+		print(selected_card_index)
 		update_card_selection()
 	elif event.is_action_pressed("ui_accept"):
 		if not card_confirmed:
@@ -189,80 +201,95 @@ func select_card_for_confirmation() -> void:
 		return
 	var selected_card: Dictionary = hand[selected_card_index]
 	if selected_card["use"] == true:
-		print("This card has already been used.")
+		$Label.text = "This card has already been used."
 		return
 	card_confirmed = true
-	print("Selected: ", selected_card["name"])
-	print("Type: ", selected_card["type"])
+	$Label.text = str("Selected: ", selected_card["name"])
+	$Label.text = str("Type: ", selected_card["type"])
 	if selected_card["type"] == "weapon":
-		print("Attack: ", selected_card["attack"])
+		$Label.text = str("Attack: ", selected_card["attack"])
 	elif selected_card["type"] == "movement":
-		print("Movement: ", selected_card["movement"])
+		$Label.text = str("Movement: ", selected_card["movement"])
 	elif selected_card["type"] == "item":
-		print("Item selected.")
-	print("Press SPACE again to confirm.")
+		$Label.text = str("Item selected.")
+	$Label.text = str("Press SPACE again to confirm.")
 
-# INPUT PROCESS #2 - pr
+# INPUT PROCESS #2 - confirms the selected card
 func confirm_card_selection() -> void:
 	if hand.is_empty():
 		return
-	print("Card confirmed.")
+	$Label.text = str("Card confirmed.")
 	select_card(selected_card_index)
 	card_confirmed = false
 	selected_card_index = 0
-	show_hand()
+	# Hide all remaining cards
+	for card in hand:
+		var card_texture: TextureRect = card["sprite"]
+		var card_container = card_texture.get_parent()
+		card_container.visible = false 
+	$Label.hide()
 	update_card_selection()
 
-# INPUT PROCESS #3 -
+# INPUT PROCESS #3 - visually shows which card is currently selected
 func update_card_selection() -> void:
+	print("=== UPDATE SELECTION ===")
+	print("Selected index: ", selected_card_index)
+	print("Hand size: ", hand.size())
 	for i in range(hand.size()):
 		var card_texture: TextureRect = hand[i]["sprite"]
+		var card_container = card_texture.get_parent()
 		if i == selected_card_index:
-			card_texture.scale = Vector2(0.9, 0.9)
+			card_container.scale = Vector2(0.6, 0.6) # Selected card becomes slightly larger
+			card_texture.modulate = SELECTED_CARD_COLOUR
+			card_container.z_index = 1 # Make the selected card appear above the others
 		else:
-			card_texture.scale = Vector2(0.8, 0.8)
+			card_container.scale = Vector2(0.5, 0.5) # All unselected cards stay at their normal size
+			card_texture.modulate = UNSELECTED_CARD_COLOUR # Return unselected cards to normal layer
+			card_container.z_index = 0
 
-# SHOW HAND - visually, show the 5 cards in the hand in a row
+# SHOW HAND - visually, showing the 5 cards in the hand in a row
 func show_hand() -> void:
 	var card_row = $VBoxContainer/HBoxContainer
 	# Remove previously created card copies
 	for card_container in card_row.get_children():
 		if card_container.has_meta("hand_card"):
 			card_container.queue_free()
+	# Set the VBoxContainer to occupy the bottom half of the screen
+	$VBoxContainer.position = Vector2(0, 160)
+	$VBoxContainer.size = Vector2(480, 160)
+	# Set the HBoxContainer to cover the width of the bottom half
+	card_row.position = Vector2(0, 0)
+	card_row.size = Vector2(480, 160)
+	card_row.custom_minimum_size = Vector2(480, 160)
+	card_row.size_flags_horizontal = Control.SIZE_FILL
+	card_row.size_flags_vertical = Control.SIZE_FILL
+	card_row.alignment = BoxContainer.ALIGNMENT_CENTER # Place the five cards in the centre of the row
+	card_row.add_theme_constant_override("separation", 20) # Small equal gap between cards
 	# Hide the original card templates
 	for card_container in card_row.get_children():
 		card_container.visible = false
-	# Set up the HBoxContainer to fill the screen
-	card_row.position = Vector2(25, 160)
-	card_row.size = Vector2(480, 120)
-	# Centre the cards and add equal spacing
-	card_row.alignment = BoxContainer.ALIGNMENT_CENTER
-	card_row.add_theme_constant_override("separation", 80)
 	# Show ONLY the cards that were randomly drawn into the hand
 	for card in hand:
 		# Get the original card container
 		var original_texture: TextureRect = card["sprite"]
 		var original_card = original_texture.get_parent()
 		var card_copy = original_card.duplicate() # Create a separate visual copy
-		card_copy.set_meta("hand_card", true) # Mark this as a generated hand card
-		card_row.add_child(card_copy) # Add it to the row
-		card_copy.visible = true # Make it visible
-		card_copy.custom_minimum_size = Vector2(80, 100) # Give each card the same size
-		# Find the TextureRect inside the copied card
-		var copied_texture: TextureRect = card_copy.get_node(original_texture.get_path())
-		card["sprite"] = copied_texture # Store the new visual copy in the card dictionary
+		card_copy.set_meta("hand_card", true) # Mark the copy as a hand card
+		card_row.add_child(card_copy) # Add the copied card to the row
+		card_copy.visible = true
+		card_copy.custom_minimum_size = Vector2(80, 100) # Give every card the same base size
+		card_copy.scale = Vector2(0.5, 0.5) # Set the NORMAL card size
+		var copied_texture: TextureRect = card_copy.get_node(NodePath(original_texture.name)) # Find the TextureRect inside the copied card
+		copied_texture.modulate = UNSELECTED_CARD_COLOUR # Reset its colour
+		card["sprite"] = copied_texture # Store the copied TextureRect in the card
 
 # SELECT CARD - for the turn, the user is able to select a card
 func select_card(card_index: int) -> bool:
 	# Check that selected card exists
 	if card_index < 0 or card_index >= hand.size():
-		print("Invalid card selection.")
+		$Label.text = str("Invalid card selection.")
 		return false
 	var selected_card: Dictionary = hand[card_index]
-	# Checks whether the selected card has been used
-	if selected_card["use"] == true: # Debugging
-		print("This card has already been used.")
-		return false
 	# Process card
 	process_card(card_index) # Redirects to the next section
 	return true
@@ -349,3 +376,7 @@ func reset_card_flags() -> void:
 	dragon_triggered = false
 	portal_used = false
 	cards_drawn = 0
+
+
+func _on_end_turn_button_pressed() -> void:
+	end_turn()
