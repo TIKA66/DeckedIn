@@ -17,8 +17,8 @@ var map:Dictionary = {
 		"floor": 1,
 		"adjacent_rooms": [2, 3],
 		"movement_cost": 1,
-		"monsters": [],
-		"items": []
+		"monsters": null,
+		"items": null
 	},
 	2: {
 		"room": 2,
@@ -26,8 +26,8 @@ var map:Dictionary = {
 		"floor": 2,
 		"adjacent_rooms": [1, 3, 4, 5],
 		"movement_cost": 3,
-		"monsters": [],
-		"items": []
+		"monsters": null,
+		"items": null
 	},
 	3: {
 		"room": 3,
@@ -35,8 +35,8 @@ var map:Dictionary = {
 		"floor": 2,
 		"adjacent_rooms": [1, 2, 5, 6],
 		"movement_cost": 1,
-		"monsters": [],
-		"items": []
+		"monsters": null,
+		"items": null
 		},
 	4: {
 		"room": 4,
@@ -44,8 +44,8 @@ var map:Dictionary = {
 		"floor": 3,
 		"adjacent_rooms": [2, 5],
 		"movement_cost": 2,
-		"monsters": [],
-		"items": []
+		"monsters": null,
+		"items": null
 		},
 	5: {
 		"room": 5,
@@ -53,8 +53,8 @@ var map:Dictionary = {
 		"floor": 3,
 		"adjacent_rooms": [2, 3, 4, 6],
 		"movement_cost": 1,
-		"monsters": [],
-		"items": []
+		"monsters": null,
+		"items": null
 		},
 	6: {
 		"room": 6,
@@ -62,8 +62,8 @@ var map:Dictionary = {
 		"floor": 3,
 		"adjacent_rooms": [3, 5],
 		"movement_cost": 1,
-		"monsters": [],
-		"items": [],
-		"items_to_sell": ["Fountain", ""]
+		"monsters": null,
+		"items": null,
+		"items_to_sell": null
 		}
 }

@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://dm03463myw6lm"]
 
 [ext_resource type="Script" uid="uid://ctxmjvah13bew" path="res://Scripts/monster.gd" id="1_i44lo"]
-[ext_resource type="Texture2D" uid="uid://cqh71p158fmro" path="res://Resources/card_dagger.png" id="2_hyvb2"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xhoai"]
+load_path = "res://.godot/imported/card_dagger.png-d46ced40e27bd6ef7f482296a2e40f65.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ujuxu"]
 size = Vector2(150, 177)
@@ -12,7 +14,7 @@ script = ExtResource("1_i44lo")
 [node name="Spider" type="Area2D" parent="." unique_id=248734529]
 
 [node name="Spider" type="Sprite2D" parent="Spider" unique_id=1274618086]
-texture = ExtResource("2_hyvb2")
+texture = SubResource("CompressedTexture2D_xhoai")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Spider" unique_id=174303456]
 position = Vector2(1, -0.5)
@@ -21,7 +23,7 @@ shape = SubResource("RectangleShape2D_ujuxu")
 [node name="Goblin" type="Area2D" parent="." unique_id=590355953]
 
 [node name="Goblin" type="Sprite2D" parent="Goblin" unique_id=2118764566]
-texture = ExtResource("2_hyvb2")
+texture = SubResource("CompressedTexture2D_xhoai")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Goblin" unique_id=1628618214]
 position = Vector2(1, -0.5)
@@ -30,7 +32,7 @@ shape = SubResource("RectangleShape2D_ujuxu")
 [node name="Mimic" type="Area2D" parent="." unique_id=728282064]
 
 [node name="Mimic" type="Sprite2D" parent="Mimic" unique_id=58848729]
-texture = ExtResource("2_hyvb2")
+texture = SubResource("CompressedTexture2D_xhoai")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mimic" unique_id=771310016]
 position = Vector2(1, -0.5)

@@ -14,9 +14,10 @@ var random_artefact_room = null
 var artefact_value: int = 10
 var artefact_use: bool = false
 
+#FOUND CHECK - check whether the artefact is in the room with the player
 func found_check():
 	if artefact_position == $"..".player_position:
-		$Artefact.texture = preload("res://Resources/artefact_open.png")
+		$Artefact.texture = preload("res://Resources/artefact_open.png") #set artefact texture to the open sprite
 		artefact_position = null # remove artefact from map
 		$"../..".player_artefact = true
 	else:
@@ -25,3 +26,10 @@ func found_check():
 #COME BACK TO THIS
 func touch_artefact():
 	artefact_use = true
+
+func win_check():
+	if $"../..".player_artefact == true:
+		$"../..".player_escaped = true
+		print($"../..".player_artefact, " Gold: ", $"../../Card_System".player_gold)
+	else:
+		print("Player does not have artefact.")
