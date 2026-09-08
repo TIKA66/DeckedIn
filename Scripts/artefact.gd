@@ -29,6 +29,7 @@ func touch_artefact():
 
 func win_check():
 	if $"../..".player_artefact == true:
+		$"../..".player_escaped = true
 		print($"../..".player_artefact, " Gold: ", $"../../Card_System".player_gold)
 	else:
 		print("Player does not have artefact.")

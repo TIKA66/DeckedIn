@@ -23,8 +23,8 @@ func place_item(spawn_rate):
 	print("Item roll: ", item_roll) #DEBUGGING
 	if item_roll > spawn_rate:
 		item_spawned = randi_range(1, available_items.size()-1) # choose which item to spawn
-		Map.map[$Movement.player_position]["items"] = available_items[item_spawned] #spawn item
-		print("item in room: ", Map.map[$Movement.player_position]["items"]["name"]) # debugging - fetch item in room
+		$"../Map".map[$"..".player_position]["items"] = available_items[item_spawned] #spawn item
+		#print("item in room: ", Map.map[$"..".player_position]["items"]["name"]) # debugging - fetch item in room
 
 #CREATE INDIVIDUAL ITEM FOR AVAILABLE_ITEMS
 func create_item(
