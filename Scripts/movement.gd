@@ -13,6 +13,9 @@ var player_position = null
 var selected_room = null # Stores the room the player wishes to move to
 var movement_cost: int = 0 # stores the cost to move to a selected room
 var adjacent_rooms = null
+var room_nodes: Array[Area2D] = []
+var selected_room_node: Area2D = null
+var selecting_room: bool = false
 
 #func _ready() -> void:
 	#current_room()
@@ -24,28 +27,74 @@ var adjacent_rooms = null
 
 # START MOVEMENT - test whether the player has movement points, if not, do not allow them to move
 func start_movement() -> void:
+	$Market.hide()
+	$Monster.hide()
+	$Ending.hide()
+	$Selection.hide()
+	$Starting.show()
 	if $Card_System.available_movement <= 0:
 		print("You have no movement cards.")
 		return
+	selecting_room = true
 	display_adjacent_rooms()
 
-# DISPLAY ADJACENT ROOMS - show adjacent rooms
+# DISPLAY ADJACENT ROOMS - show adjacent rooms and allow the player to select them
 func display_adjacent_rooms() -> void:
 	adjacent_rooms = Map.map[player_position]["adjacent_rooms"]
 	print("Adjacent rooms:")
 	for room in adjacent_rooms:
 		print("  Room: ", room)
 		print("  Movement Cost: ", Map.map[room]["movement_cost"])
+	# Connect the clickable room nodes
+	connect_room_clicks()
 
-# SELECT ROOM - test whether player is able to move to the selected room and whether they have enough movement points to move
+# CONNECT ROOM CLICKS - connect each room's mouse input to the movement system
+func connect_room_clicks() -> void:
+	var rooms = [
+		$Starting,
+		$Market,
+		$Monster,
+		$Ending
+	]
+	for room in rooms:
+		if not room.input_event.is_connected(_on_room_clicked):
+			room.input_event.connect(_on_room_clicked)
+
+# ROOM CLICKED - select the room clicked by the player
+# ROOM CLICKED - select the room clicked by the player
+func _on_room_clicked(viewport: Node, event: InputEvent, shape_idx: int, room: Area2D) -> void:
+	if not selecting_room:
+		return
+	if not event is InputEventMouseButton:
+		return
+	if not event.pressed:
+		return
+	if event.button_index != MOUSE_BUTTON_LEFT:
+		return
+	selected_room_node = room
+	print("Room clicked: ", room.name)
+	show_room_selection(room)
+	var room_position = room.get_meta("room_position")
+	var room_cost = Map.map[room_position]["movement_cost"]
+	select_room(room_position, room_cost)
+
+# SHOW ROOM SELECTION - move the selection sprite onto the selected room
+func show_room_selection(room: Area2D) -> void:
+	$Selection.global_position = room.global_position
+	$Selection.visible = true
+	$Selection/Template.visible = true
+	$Selection/NoTemplate.visible = false
+	print("Selection displayed on: ", room.name)
+
+# SELECT ROOM - test whether player is able to move to the selected room and whether they have enough movement points
 func select_room(room_position: int, room_cost: int) -> bool:
 	selected_room = room_position
 	movement_cost = room_cost
-#	Check whether selected room is adjacent to player
+	# Check whether selected room is adjacent to player
 	if selected_room not in adjacent_rooms:
 		print("You cannot move to this room.")
 		return false
-#	Test whether the player has enough movement points
+	# Test whether the player has enough movement points
 	if $Card_System.available_movement < movement_cost:
 		print("You do not have enough movement points.")
 		return false

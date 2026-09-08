@@ -7,10 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://cgsbhxgchkt8g" path="res://Scenes/rooms.tscn" id="5_8fla0"]
 [ext_resource type="Texture2D" uid="uid://dgjw66lkx7mqk" path="res://Resources/template_main_background_general_1.png" id="6_gh1hn"]
 [ext_resource type="Texture2D" uid="uid://16n0ktq5w44s" path="res://Resources/background_market.png" id="7_df5t0"]
+[ext_resource type="Texture2D" uid="uid://cau6yg0d442of" path="res://Resources/template_main_background_general_3.png" id="7_gvcvr"]
 [ext_resource type="Texture2D" uid="uid://dfcp1bg8p81ub" path="res://Resources/template_main_background_general_4.png" id="8_gvcvr"]
 [ext_resource type="Texture2D" uid="uid://icfbu0skirxg" path="res://Resources/template_main_background_general_2.png" id="9_ulmyr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wxbh7"]
+size = Vector2(476, 322)
 
 [node name="Movement" type="Node2D" unique_id=1919449938]
 script = ExtResource("1_er76d")
@@ -26,21 +28,6 @@ visible = false
 position = Vector2(-2, 1)
 
 [node name="Map" parent="." unique_id=394942759 instance=ExtResource("3_rjeat")]
-
-[node name="Starting" type="Area2D" parent="." unique_id=1924841191]
-position = Vector2(120, 80)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Starting" unique_id=1872905551]
-position = Vector2(120, 80)
-shape = SubResource("RectangleShape2D_wxbh7")
-
-[node name="Template" type="Sprite2D" parent="Starting" unique_id=856677007]
-position = Vector2(120, 80)
-texture = ExtResource("6_gh1hn")
-
-[node name="NoTemplate" type="Sprite2D" parent="Starting" unique_id=80162983]
-visible = false
-position = Vector2(120, 80)
 
 [node name="Market" type="Area2D" parent="." unique_id=924862236]
 position = Vector2(120, 80)
@@ -66,7 +53,7 @@ shape = SubResource("RectangleShape2D_wxbh7")
 
 [node name="Template" type="Sprite2D" parent="Monster" unique_id=842669184]
 position = Vector2(120, 80)
-texture = ExtResource("8_gvcvr")
+texture = ExtResource("7_gvcvr")
 
 [node name="NoTemplate" type="Sprite2D" parent="Monster" unique_id=997067252]
 visible = false
@@ -85,5 +72,37 @@ position = Vector2(120, 80)
 texture = ExtResource("9_ulmyr")
 
 [node name="NoTemplate" type="Sprite2D" parent="Ending" unique_id=891296704]
+visible = false
+position = Vector2(120, 80)
+
+[node name="Starting" type="Area2D" parent="." unique_id=1924841191]
+position = Vector2(120, 80)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Starting" unique_id=1872905551]
+position = Vector2(120, 80)
+shape = SubResource("RectangleShape2D_wxbh7")
+
+[node name="Template" type="Sprite2D" parent="Starting" unique_id=856677007]
+position = Vector2(120, 80)
+texture = ExtResource("6_gh1hn")
+
+[node name="NoTemplate" type="Sprite2D" parent="Starting" unique_id=80162983]
+visible = false
+position = Vector2(120, 80)
+
+[node name="Selection" type="Area2D" parent="." unique_id=1636338974]
+position = Vector2(80, 152.5)
+scale = Vector2(0.1, 0.15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Selection" unique_id=14366586]
+position = Vector2(110, 90)
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_wxbh7")
+
+[node name="Template" type="Sprite2D" parent="Selection" unique_id=1160432708]
+position = Vector2(120, 80)
+texture = ExtResource("8_gvcvr")
+
+[node name="NoTemplate" type="Sprite2D" parent="Selection" unique_id=2071902446]
 visible = false
 position = Vector2(120, 80)

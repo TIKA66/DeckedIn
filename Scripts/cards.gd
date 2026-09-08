@@ -34,6 +34,8 @@ var hand_visuals: Array[Control] = []
 
 # COLOUR FOR SELECTED CARD - changes the colour of the card currently being selected
 const SELECTED_CARD_COLOUR: Color = Color(1.0, 0.357, 0.516, 1.0)
+# COLOUR FOR USED CARD - changes the cplour when used
+const USED_CARD_COLOUR: Color = Color(0.458, 0.768, 0.412, 1.0)
 # COLOUR FOR UNSELECTED CARD - keeps cards at their normal colour when they are not selected
 const UNSELECTED_CARD_COLOUR: Color = Color(1.0, 1.0, 1.0, 1.0)
 
@@ -230,10 +232,12 @@ func confirm_card_selection() -> void:
 	if hand.is_empty():
 		return
 	$Label.text = str("Card confirmed.")
+	var selected_card = hand_visuals[selected_card_index].get_child(0)
+	selected_card.modulate = USED_CARD_COLOUR
 	select_card(selected_card_index)
 	card_confirmed = false
 	selected_card_index = 0
-	# Hide all cards after selecting
+	# Hide all cards after selecting - not anymore
 	#for card_container in hand_visuals:
 	#	card_container.visible = false
 	$Label.hide()
@@ -323,6 +327,7 @@ func process_card(card_index: int) -> void:
 	elif selected_card["type"] == "item":
 		process_item(selected_card)
 	selected_card["use"] = true
+	#selected_card.modulate = USED_CARD_COLOUR - wrong???
 	hand.remove_at(card_index)
 	discard_pile.append(selected_card)
 	# DRAGON TRIGGER - returns to the system that the game has ended in another script

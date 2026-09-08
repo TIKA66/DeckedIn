@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cp4vc3rol8olt"]
 
 [ext_resource type="PackedScene" uid="uid://b0efnx7pamvx8" path="res://Scenes/card.tscn" id="1_8gbba"]
-[ext_resource type="Script" uid="uid://5p5cpb0yym4c" path="res://Scenes/main.gd" id="1_jjvhh"]
+[ext_resource type="Script" uid="uid://5p5cpb0yym4c" path="res://Scripts/main.gd" id="1_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://cgsbhxgchkt8g" path="res://Scenes/rooms.tscn" id="2_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://blprj6etjn2ig" path="res://Scenes/dragon.tscn" id="3_kry3j"]
 [ext_resource type="Script" uid="uid://ctxmjvah13bew" path="res://Scripts/monster.gd" id="5_kry3j"]
