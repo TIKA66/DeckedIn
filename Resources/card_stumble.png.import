@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b21skmk3w24ih"
-path="res://.godot/imported/gui_stack_of_coins.png-c286ebcf789d2467722df74789488a58.ctex"
+uid="uid://fk8gm37u3l7h"
+path="res://.godot/imported/card_stumble.png-3d87596c9e2ce3fcb9275a11391af18f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/gui_stack_of_coins.png"
-dest_files=["res://.godot/imported/gui_stack_of_coins.png-c286ebcf789d2467722df74789488a58.ctex"]
+source_file="res://Resources/card_stumble.png"
+dest_files=["res://.godot/imported/card_stumble.png-3d87596c9e2ce3fcb9275a11391af18f.ctex"]
 
 [params]
 

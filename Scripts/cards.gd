@@ -45,6 +45,18 @@ var cards_drawn: int = 0
 # FUNCTION: A reusable block of code that performs a specific task when it is called. Functions can accept parameters and return a value.
 # INITIALISE THE SYSTEM
 func _ready() -> void:
+	print("=== CARD SYSTEM DEBUG ===")
+	print("Current node: ", get_path())
+	print("Children of Cards:")
+	
+	for child in get_children():
+		print(" - ", child.name)
+	
+	print("VBoxContainer exists: ", has_node("VBoxContainer"))
+	print("HBoxContainer exists: ", has_node("VBoxContainer/HBoxContainer"))
+	print("Dagger container exists: ", has_node("VBoxContainer/HBoxContainer/Dagger"))
+	print("Dagger texture exists: ", has_node("VBoxContainer/HBoxContainer/Dagger/Dagger"))
+	
 	# Initialise the card_sprites array
 	card_sprites = [
 		$VBoxContainer/HBoxContainer/Dagger/Dagger,
@@ -61,7 +73,6 @@ func _ready() -> void:
 	]
 	for i in range(card_sprites.size()):
 		print("Sprite ", i, ": ", card_sprites[i])
-	$Label.show()
 	create_deck() # From the intialisation of the system to redirect to the next function of create_deck()
 	shuffle_deck() # After the previous statement is completed, the system will redirect to this next function shuffle_deck()
 	start_turn()
@@ -239,11 +250,11 @@ func update_card_selection() -> void:
 		var card_texture: TextureRect = hand[i]["sprite"]
 		var card_container = card_texture.get_parent()
 		if i == selected_card_index:
-			card_container.scale = Vector2(0.6, 0.6) # Selected card becomes slightly larger
+			card_container.scale = Vector2(0.4, 0.4) # Selected card becomes slightly larger
 			card_texture.modulate = SELECTED_CARD_COLOUR
 			card_container.z_index = 1 # Make the selected card appear above the others
 		else:
-			card_container.scale = Vector2(0.5, 0.5) # All unselected cards stay at their normal size
+			card_container.scale = Vector2(0.4, 0.4) # All unselected cards stay at their normal size
 			card_texture.modulate = UNSELECTED_CARD_COLOUR # Return unselected cards to normal layer
 			card_container.z_index = 0
 
@@ -255,16 +266,16 @@ func show_hand() -> void:
 		if card_container.has_meta("hand_card"):
 			card_container.queue_free()
 	# Set the VBoxContainer to occupy the bottom half of the screen
-	$VBoxContainer.position = Vector2(0, 160)
-	$VBoxContainer.size = Vector2(480, 160)
+	$VBoxContainer.position = Vector2(0, 180)
+	$VBoxContainer.size = Vector2(480, 180)
 	# Set the HBoxContainer to cover the width of the bottom half
-	card_row.position = Vector2(0, 0)
-	card_row.size = Vector2(480, 160)
+	card_row.position = Vector2(15, 0)
+	card_row.size = Vector2(480, 180)
 	card_row.custom_minimum_size = Vector2(480, 160)
 	card_row.size_flags_horizontal = Control.SIZE_FILL
 	card_row.size_flags_vertical = Control.SIZE_FILL
 	card_row.alignment = BoxContainer.ALIGNMENT_CENTER # Place the five cards in the centre of the row
-	card_row.add_theme_constant_override("separation", 20) # Small equal gap between cards
+	card_row.add_theme_constant_override("separation", 5) # Small equal gap between cards
 	# Hide the original card templates
 	for card_container in card_row.get_children():
 		card_container.visible = false
@@ -278,7 +289,7 @@ func show_hand() -> void:
 		card_row.add_child(card_copy) # Add the copied card to the row
 		card_copy.visible = true
 		card_copy.custom_minimum_size = Vector2(80, 100) # Give every card the same base size
-		card_copy.scale = Vector2(0.5, 0.5) # Set the NORMAL card size
+		card_copy.scale = Vector2(0.4, 0.4) # Set the NORMAL card size
 		var copied_texture: TextureRect = card_copy.get_node(NodePath(original_texture.name)) # Find the TextureRect inside the copied card
 		copied_texture.modulate = UNSELECTED_CARD_COLOUR # Reset its colour
 		card["sprite"] = copied_texture # Store the copied TextureRect in the card
