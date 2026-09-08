@@ -26,6 +26,19 @@ func _process(delta: float) -> void:
 [node name="main" type="Node2D" unique_id=928746799]
 script = ExtResource("1_jjvhh")
 
+[node name="Rooms" parent="." unique_id=210182496 instance=ExtResource("2_jjvhh")]
+position = Vector2(0, 1)
+
+[node name="Monster" parent="." unique_id=313302047 instance=ExtResource("3_kry3j")]
+script = ExtResource("5_kry3j")
+
+[node name="Movement" parent="." unique_id=1919449938 instance=ExtResource("6_21xkr")]
+position = Vector2(-5, 0)
+
+[node name="Map" parent="." unique_id=394942759 instance=ExtResource("7_6bp64")]
+
+[node name="Artefact" parent="." unique_id=1552427224 instance=ExtResource("8_344ge")]
+
 [node name="Card_System" parent="." unique_id=1456674367 instance=ExtResource("1_8gbba")]
 anchors_preset = 0
 anchor_right = 0.0
@@ -37,23 +50,11 @@ offset_bottom = -3.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="Rooms" parent="." unique_id=210182496 instance=ExtResource("2_jjvhh")]
-position = Vector2(0, 1)
-
-[node name="Monster" parent="." unique_id=313302047 instance=ExtResource("3_kry3j")]
-script = ExtResource("5_kry3j")
-
-[node name="Movement" parent="." unique_id=1919449938 instance=ExtResource("6_21xkr")]
-position = Vector2(160, -60)
-
-[node name="Map" parent="." unique_id=394942759 instance=ExtResource("7_6bp64")]
-
-[node name="Artefact" parent="." unique_id=1552427224 instance=ExtResource("8_344ge")]
-
 [node name="End_turn" type="Button" parent="." unique_id=1582002304]
-offset_left = 383.0
-offset_right = 480.0
-offset_bottom = 29.0
+offset_left = 527.0
+offset_top = -60.0
+offset_right = 624.0
+offset_bottom = -29.0
 text = "End turn"
 script = SubResource("GDScript_344ge")
 

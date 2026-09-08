@@ -28,7 +28,7 @@ script = ExtResource("1_0qqmn")
 
 [node name="Label" type="Label" parent="." unique_id=1304350932]
 layout_mode = 1
-offset_left = 361.0
+offset_left = 417.0
 offset_top = 102.0
 offset_right = 480.0
 offset_bottom = 215.0
@@ -36,6 +36,7 @@ theme_override_font_sizes/font_size = 24
 label_settings = SubResource("LabelSettings_sj14m")
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="EndTurnButton" type="Button" parent="." unique_id=1586766660]
 layout_mode = 0
@@ -51,6 +52,8 @@ offset_bottom = 40.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1830593367]
 layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.3, 0.3)
 
 [node name="Dagger" type="Panel" parent="VBoxContainer/HBoxContainer" unique_id=475581394]
 layout_mode = 2
@@ -93,8 +96,10 @@ layout_mode = 2
 
 [node name="Explore" type="TextureRect" parent="VBoxContainer/HBoxContainer/Explore" unique_id=1069405033]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 8.0
+offset_right = 150.0
+offset_bottom = 172.0
+offset_transform_enabled = true
 texture = ExtResource("5_sj14m")
 
 [node name="Ladder" type="Panel" parent="VBoxContainer/HBoxContainer" unique_id=1330035261]

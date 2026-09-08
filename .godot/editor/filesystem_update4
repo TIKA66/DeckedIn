@@ -3,3 +3,10 @@ res://Scripts/cards.gd
 res://Scripts/global_data.gd
 res://Scenes/main.tscn
 res://Scenes/movement.tscn
+res://Scenes/main.gd
+res://Scenes/rooms.tscn
+res://Scripts/artefact.gd
+res://Scripts/map.gd
+res://Scripts/monster.gd
+res://Scripts/movement.gd
+res://Scripts/rooms.gd

@@ -5,14 +5,85 @@
 [ext_resource type="PackedScene" uid="uid://cmji0q45s33we" path="res://Scenes/map.tscn" id="3_rjeat"]
 [ext_resource type="PackedScene" uid="uid://ckue8tktk1pq6" path="res://Scenes/artefact.tscn" id="4_dyl7d"]
 [ext_resource type="PackedScene" uid="uid://cgsbhxgchkt8g" path="res://Scenes/rooms.tscn" id="5_8fla0"]
+[ext_resource type="Texture2D" uid="uid://dgjw66lkx7mqk" path="res://Resources/template_main_background_general_1.png" id="6_gh1hn"]
+[ext_resource type="Texture2D" uid="uid://16n0ktq5w44s" path="res://Resources/background_market.png" id="7_df5t0"]
+[ext_resource type="Texture2D" uid="uid://dfcp1bg8p81ub" path="res://Resources/template_main_background_general_4.png" id="8_gvcvr"]
+[ext_resource type="Texture2D" uid="uid://icfbu0skirxg" path="res://Resources/template_main_background_general_2.png" id="9_ulmyr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wxbh7"]
 
 [node name="Movement" type="Node2D" unique_id=1919449938]
 script = ExtResource("1_er76d")
 
 [node name="Card_System" parent="." unique_id=1456674367 instance=ExtResource("2_jeyp3")]
+visible = false
 
 [node name="Artefact" parent="." unique_id=313302047 instance=ExtResource("4_dyl7d")]
+visible = false
 
 [node name="Rooms" parent="." unique_id=210182496 instance=ExtResource("5_8fla0")]
+visible = false
+position = Vector2(-2, 1)
 
 [node name="Map" parent="." unique_id=394942759 instance=ExtResource("3_rjeat")]
+
+[node name="Starting" type="Area2D" parent="." unique_id=1924841191]
+position = Vector2(120, 80)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Starting" unique_id=1872905551]
+position = Vector2(120, 80)
+shape = SubResource("RectangleShape2D_wxbh7")
+
+[node name="Template" type="Sprite2D" parent="Starting" unique_id=856677007]
+position = Vector2(120, 80)
+texture = ExtResource("6_gh1hn")
+
+[node name="NoTemplate" type="Sprite2D" parent="Starting" unique_id=80162983]
+visible = false
+position = Vector2(120, 80)
+
+[node name="Market" type="Area2D" parent="." unique_id=924862236]
+position = Vector2(120, 80)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Market" unique_id=1727313473]
+position = Vector2(120, 80)
+shape = SubResource("RectangleShape2D_wxbh7")
+
+[node name="Template" type="Sprite2D" parent="Market" unique_id=769366295]
+position = Vector2(120, 80)
+texture = ExtResource("7_df5t0")
+
+[node name="NoTemplate" type="Sprite2D" parent="Market" unique_id=1910488206]
+visible = false
+position = Vector2(120, 80)
+
+[node name="Monster" type="Area2D" parent="." unique_id=2076183922]
+position = Vector2(120, 80)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Monster" unique_id=1346881395]
+position = Vector2(120, 80)
+shape = SubResource("RectangleShape2D_wxbh7")
+
+[node name="Template" type="Sprite2D" parent="Monster" unique_id=842669184]
+position = Vector2(120, 80)
+texture = ExtResource("8_gvcvr")
+
+[node name="NoTemplate" type="Sprite2D" parent="Monster" unique_id=997067252]
+visible = false
+position = Vector2(120, 80)
+texture = ExtResource("8_gvcvr")
+
+[node name="Ending" type="Area2D" parent="." unique_id=215246163]
+position = Vector2(120, 80)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ending" unique_id=712395651]
+position = Vector2(120, 80)
+shape = SubResource("RectangleShape2D_wxbh7")
+
+[node name="Template" type="Sprite2D" parent="Ending" unique_id=1268874317]
+position = Vector2(120, 80)
+texture = ExtResource("9_ulmyr")
+
+[node name="NoTemplate" type="Sprite2D" parent="Ending" unique_id=891296704]
+visible = false
+position = Vector2(120, 80)

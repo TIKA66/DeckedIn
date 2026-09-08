@@ -30,6 +30,7 @@ var player_gold: int = 0 # Intialises the intial amount of gold the user has
 var selected_card_index: int = 0
 var card_confirmed: bool = false
 var card_sprites: Array[TextureRect] = []
+var hand_visuals: Array[Control] = []
 
 # COLOUR FOR SELECTED CARD - changes the colour of the card currently being selected
 const SELECTED_CARD_COLOUR: Color = Color(1.0, 0.357, 0.516, 1.0)
@@ -225,7 +226,6 @@ func select_card_for_confirmation() -> void:
 		$Label.text = str("Item selected.")
 	$Label.text = str("Press SPACE again to confirm.")
 
-# INPUT PROCESS #2 - confirms the selected card
 func confirm_card_selection() -> void:
 	if hand.is_empty():
 		return
@@ -233,29 +233,26 @@ func confirm_card_selection() -> void:
 	select_card(selected_card_index)
 	card_confirmed = false
 	selected_card_index = 0
-	# Hide all remaining cards
-	for card in hand:
-		var card_texture: TextureRect = card["sprite"]
-		var card_container = card_texture.get_parent()
-		card_container.visible = false 
+	# Hide all cards after selecting
+	#for card_container in hand_visuals:
+	#	card_container.visible = false
 	$Label.hide()
-	update_card_selection()
 
 # INPUT PROCESS #3 - visually shows which card is currently selected
 func update_card_selection() -> void:
 	print("=== UPDATE SELECTION ===")
 	print("Selected index: ", selected_card_index)
 	print("Hand size: ", hand.size())
-	for i in range(hand.size()):
-		var card_texture: TextureRect = hand[i]["sprite"]
-		var card_container = card_texture.get_parent()
+	for i in range(hand_visuals.size()):
+		var card_container = hand_visuals[i]
+		var card_texture: TextureRect = card_container.get_child(0)
 		if i == selected_card_index:
-			card_container.scale = Vector2(0.4, 0.4) # Selected card becomes slightly larger
+			card_container.scale = Vector2(1.15, 1.15)
 			card_texture.modulate = SELECTED_CARD_COLOUR
-			card_container.z_index = 1 # Make the selected card appear above the others
+			card_container.z_index = 1
 		else:
-			card_container.scale = Vector2(0.4, 0.4) # All unselected cards stay at their normal size
-			card_texture.modulate = UNSELECTED_CARD_COLOUR # Return unselected cards to normal layer
+			card_container.scale = Vector2(1.0, 1.0)
+			card_texture.modulate = UNSELECTED_CARD_COLOUR
 			card_container.z_index = 0
 
 # SHOW HAND - visually, showing the 5 cards in the hand in a row
@@ -265,34 +262,43 @@ func show_hand() -> void:
 	for card_container in card_row.get_children():
 		if card_container.has_meta("hand_card"):
 			card_container.queue_free()
+	# Clear the visual list
+	hand_visuals.clear()
 	# Set the VBoxContainer to occupy the bottom half of the screen
-	$VBoxContainer.position = Vector2(0, 180)
+	$VBoxContainer.position = Vector2(0, 215)
 	$VBoxContainer.size = Vector2(480, 180)
 	# Set the HBoxContainer to cover the width of the bottom half
-	card_row.position = Vector2(15, 0)
+	card_row.position = Vector2(-20, 0)
 	card_row.size = Vector2(480, 180)
 	card_row.custom_minimum_size = Vector2(480, 160)
 	card_row.size_flags_horizontal = Control.SIZE_FILL
 	card_row.size_flags_vertical = Control.SIZE_FILL
-	card_row.alignment = BoxContainer.ALIGNMENT_CENTER # Place the five cards in the centre of the row
-	card_row.add_theme_constant_override("separation", 5) # Small equal gap between cards
+	card_row.alignment = BoxContainer.ALIGNMENT_CENTER
+	card_row.add_theme_constant_override("separation", 2)
 	# Hide the original card templates
 	for card_container in card_row.get_children():
 		card_container.visible = false
-	# Show ONLY the cards that were randomly drawn into the hand
+	# Show only the cards that were randomly drawn into the hand
 	for card in hand:
-		# Get the original card container
+		# Get the original card TextureRect
 		var original_texture: TextureRect = card["sprite"]
+		# Get the original card container
 		var original_card = original_texture.get_parent()
-		var card_copy = original_card.duplicate() # Create a separate visual copy
-		card_copy.set_meta("hand_card", true) # Mark the copy as a hand card
-		card_row.add_child(card_copy) # Add the copied card to the row
+		# Create a separate visual copy
+		var card_copy = original_card.duplicate()
+		# Mark the copy as a hand card
+		card_copy.set_meta("hand_card", true)
+		# Add the copied card to the row
+		card_row.add_child(card_copy)
 		card_copy.visible = true
-		card_copy.custom_minimum_size = Vector2(80, 100) # Give every card the same base size
-		card_copy.scale = Vector2(0.4, 0.4) # Set the NORMAL card size
-		var copied_texture: TextureRect = card_copy.get_node(NodePath(original_texture.name)) # Find the TextureRect inside the copied card
-		copied_texture.modulate = UNSELECTED_CARD_COLOUR # Reset its colour
-		card["sprite"] = copied_texture # Store the copied TextureRect in the card
+		# Give every card the same base size
+		card_copy.custom_minimum_size = Vector2(80, 100)
+		card_copy.scale = Vector2(1.0, 1.0)
+		# Store the visual copy separately
+		hand_visuals.append(card_copy)
+		# Reset the card colour
+		var copied_texture: TextureRect = card_copy.get_node(NodePath(original_texture.name))
+		copied_texture.modulate = UNSELECTED_CARD_COLOUR
 
 # SELECT CARD - for the turn, the user is able to select a card
 func select_card(card_index: int) -> bool:
