@@ -1,9 +1,9 @@
 '''
 Filename: Card_Sytem.gd
-Version: 1.0
+Version: 2.5
 Purpose: To set up the card system to connect to the overall game; 
 		to initialise the starting, shuffling, selecting, processing, and ending a turn with the cards
-Date: 5/09/2026
+Date: 5/09/2026 - 9/09/26
 Author: Aikantika Banerjee
 '''
 
@@ -29,13 +29,13 @@ var player_gold: int = 0 # Intialises the intial amount of gold the user has
 # CARD SELECTION INPUT
 var selected_card_index: int = 0
 var card_confirmed: bool = false
+var card_sprites: Array[TextureRect] = []
 
 # INFO FOR OTHER SYSTEMS - used specifically for the other nodes & scripts
 #BOOLEAN: A data type that stores one of two possible values: true or false. It is commonly used to represent a state or condition.
 var dragon_triggered: bool = false # A Dragon Attack is assigned here, to show the probabilities that some of the cards have of triggering the dragon, and thus ending the game
 var portal_used: bool = false # Whether the portal is used, relates to the movement on the map
 var cards_drawn: int = 0
-var card_sprites: Array[Sprite2D] = []
 
 # FUNCTION: A reusable block of code that performs a specific task when it is called. Functions can accept parameters and return a value.
 # INITIALISE THE SYSTEM
@@ -60,7 +60,6 @@ func _ready() -> void:
 	shuffle_deck() # After the previous statement is completed, the system will redirect to this next function shuffle_deck()
 	print("Card system ready.") # DEBUDDING STATEMENT FOR INTERNAL SYSTEM
 	print("Deck size: ", deck.size()) # DEBUGGING STATEMENT FOR INTERNAL SYSTEM
-	show_hand()
 
 # CARD CREATION - sets up the strucutre to create the deck of cards
 func create_card(
@@ -81,7 +80,7 @@ func create_card(
 		"gold": gold,
 		"dragon": dragon,
 		"use": false,
-		"sprite": TextureRect
+		"sprite": sprite
 	}
 
 # CREATE THE DECK - sets up each individual cards & its properties according to the card's structure as set up previously
@@ -118,6 +117,7 @@ func start_turn() -> void:
 	dragon_triggered = false
 	portal_used = false
 	draw_hand()
+	show_hand()
 	selected_card_index = 0
 	card_confirmed = false
 	update_card_selection()
@@ -161,28 +161,27 @@ func reshuffle_discard() -> void:
 
 
 # CARD INPUT - allows the player to move between cards and select them
+# CARD SELECTION INPUT
 func _input(event: InputEvent) -> void:
 	if not player_turn:
 		return
-	if event is InputEventKey and event.pressed and not event.echo:
-		# Move selection left
-		if event.keycode == KEY_LEFT:
-			selected_card_index -= 1
-			if selected_card_index < 0:
-				selected_card_index = hand.size() - 1
-			update_card_selection()
-		# Move selection right
-		elif event.keycode == KEY_RIGHT:
-			selected_card_index += 1
-			if selected_card_index >= hand.size():
-				selected_card_index = 0
-			update_card_selection()
-		# Select or confirm card
-		elif event.keycode == KEY_SPACE:
-			if not card_confirmed:
-				select_card_for_confirmation()
-			else:
-				confirm_card_selection()
+	if event.is_action_pressed("ui_left"):
+		selected_card_index -= 1
+		if selected_card_index < 0:
+			selected_card_index = hand.size() - 1
+		card_confirmed = false
+		update_card_selection()
+	elif event.is_action_pressed("ui_right"):
+		selected_card_index += 1
+		if selected_card_index >= hand.size():
+			selected_card_index = 0
+		card_confirmed = false
+		update_card_selection()
+	elif event.is_action_pressed("ui_accept"):
+		if not card_confirmed:
+			select_card_for_confirmation()
+		else:
+			confirm_card_selection()
 
 # INPUT PROCESS #1 - press space bar for the first confirmation
 func select_card_for_confirmation() -> void:
@@ -194,6 +193,13 @@ func select_card_for_confirmation() -> void:
 		return
 	card_confirmed = true
 	print("Selected: ", selected_card["name"])
+	print("Type: ", selected_card["type"])
+	if selected_card["type"] == "weapon":
+		print("Attack: ", selected_card["attack"])
+	elif selected_card["type"] == "movement":
+		print("Movement: ", selected_card["movement"])
+	elif selected_card["type"] == "item":
+		print("Item selected.")
 	print("Press SPACE again to confirm.")
 
 # INPUT PROCESS #2 - pr
@@ -203,7 +209,6 @@ func confirm_card_selection() -> void:
 	print("Card confirmed.")
 	select_card(selected_card_index)
 	card_confirmed = false
-	# Reset selection to the first remaining card
 	selected_card_index = 0
 	show_hand()
 	update_card_selection()
@@ -211,20 +216,41 @@ func confirm_card_selection() -> void:
 # INPUT PROCESS #3 -
 func update_card_selection() -> void:
 	for i in range(hand.size()):
-		var card_sprite: Sprite2D = hand[i]["sprite"]
+		var card_texture: TextureRect = hand[i]["sprite"]
 		if i == selected_card_index:
-			card_sprite.scale = Vector2(0.8, 0.8)
+			card_texture.scale = Vector2(0.9, 0.9)
 		else:
-			card_sprite.scale = Vector2(0.7, 0.7)
+			card_texture.scale = Vector2(0.8, 0.8)
 
-# SHOW HAND - visually, show all the cards in the hand
+# SHOW HAND - visually, show the 5 cards in the hand in a row
 func show_hand() -> void:
-	for sprite in card_sprites:
-		sprite.visible = false
-	for i in range(hand.size()):
-		var card_sprite: Sprite2D = hand[i]["sprite"]
-		card_sprite.visible = true
-		card_sprite.position = Vector2(25 + (i *10), 10)
+	var card_row = $VBoxContainer/HBoxContainer
+	# Remove previously created card copies
+	for card_container in card_row.get_children():
+		if card_container.has_meta("hand_card"):
+			card_container.queue_free()
+	# Hide the original card templates
+	for card_container in card_row.get_children():
+		card_container.visible = false
+	# Set up the HBoxContainer to fill the screen
+	card_row.position = Vector2(25, 160)
+	card_row.size = Vector2(480, 120)
+	# Centre the cards and add equal spacing
+	card_row.alignment = BoxContainer.ALIGNMENT_CENTER
+	card_row.add_theme_constant_override("separation", 80)
+	# Show ONLY the cards that were randomly drawn into the hand
+	for card in hand:
+		# Get the original card container
+		var original_texture: TextureRect = card["sprite"]
+		var original_card = original_texture.get_parent()
+		var card_copy = original_card.duplicate() # Create a separate visual copy
+		card_copy.set_meta("hand_card", true) # Mark this as a generated hand card
+		card_row.add_child(card_copy) # Add it to the row
+		card_copy.visible = true # Make it visible
+		card_copy.custom_minimum_size = Vector2(80, 100) # Give each card the same size
+		# Find the TextureRect inside the copied card
+		var copied_texture: TextureRect = card_copy.get_node(original_texture.get_path())
+		card["sprite"] = copied_texture # Store the new visual copy in the card dictionary
 
 # SELECT CARD - for the turn, the user is able to select a card
 func select_card(card_index: int) -> bool:
@@ -292,6 +318,11 @@ func end_turn() -> void:
 	print(deck) # DEBUGGING STATEMENT FOR THE INTERNAL SYSTEM
 	print(available_movement) # DEBUGGING STATEMENT FOR THE INTERNAL SYSTEM
 	print(available_attack) # DEBUGGING STATEMENT FOR THE INTERNAL SYSTEM
+
+# HIDE HAND - easy to call function -> meant for organisation
+func hide_hand() -> void:
+	for card_container in $VBoxContainer/HBoxContainer.get_children():
+		card_container.visible = false
 
 # FOLLOWING FUNCTIONS ARE FOCUSED TOWARDS OTHER SYSTEM AND SCRIPTS, TO ENSURE ORGANISATION, MAINTAINANCE & EFFICIENCY
 

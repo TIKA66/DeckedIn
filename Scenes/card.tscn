@@ -30,20 +30,25 @@ offset_bottom = 40.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1732725674]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 601.24994
+offset_bottom = 399.99997
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1073706315]
 layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(-210, 0)
+offset_transform_scale = Vector2(0.8, 0.8)
 
 [node name="Dagger" type="Panel" parent="VBoxContainer/HBoxContainer" unique_id=1986282766]
 layout_mode = 2
 
 [node name="Dagger" type="TextureRect" parent="VBoxContainer/HBoxContainer/Dagger" unique_id=693075375]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 142.0
+offset_bottom = 172.0
 texture = ExtResource("2_wf8id")
+expand_mode = 5
+stretch_mode = 3
 
 [node name="Spear" type="Panel" parent="VBoxContainer/HBoxContainer" unique_id=920592449]
 layout_mode = 2
@@ -131,6 +136,6 @@ layout_mode = 2
 
 [node name="TreasureChest" type="TextureRect" parent="VBoxContainer/HBoxContainer/TreasureChest" unique_id=1492081226]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 142.0
+offset_bottom = 172.0
 texture = ExtResource("11_ot2lt")
