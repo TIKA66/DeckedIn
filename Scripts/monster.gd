@@ -6,11 +6,14 @@ Date: 4/9/2026
 Author: Aikantika Banerjee & Elliot Slota
 '''
 
+# NODE: A basic building block of a Godot game. Nodes provide different types of functionality and can be organised together within a scene tree.
 extends Node2D
 
+# ARRAY: An ordered collection of multiple values stored under one variable. Each value can be accessed using its index.
 var available_monsters: Array = [] # a list of monsters that can be spawned
 var card_sprites: Array[TextureRect] = [] # sprites for monsters
 
+# FUNCTION: A reusable block of code that performs a specific task when it is called. Functions can accept parameters and return a value.
 func _ready() -> void:
 	create_monster_stack() # create the available monsters
 	
@@ -23,6 +26,7 @@ func _ready() -> void:
 		$VBoxContainer/HBoxContainer/Mimic
 	]
 	
+	# FOR LOOP: Repeats a block of code a specified number of times.
 	for i in range(card_sprites.size()):
 		print("Sprite ", i, ": ", card_sprites[i])
 	#from init to go do whatever monster needs to go do
@@ -30,6 +34,7 @@ func _ready() -> void:
 	print("Created ", available_monsters.size(), " monsters.") # DEBUGGING STATEMENT FOR INTERNAL SYSTEM
 
 # CREATE MONSTER - create the monster cards
+# DICTIONARY: A collection of key-value pairs used to store related information. Each value is accessed using its corresponding key.
 func create_monster(
 	monster_name: String,
 	type: String,
@@ -67,6 +72,7 @@ func create_monster_stack():
 #DIUES THIS NEED MORE???? JUST CHECK IF THERES SOMETHING IN THERE, AND IF IT EXISTS
 #maybe need to check first instance because other room smight return true??? testing thing
 func select_monster():
+	# IF CONDITIONAL: checks whether a condition is satisfied and executes blocks of code based on the result.
 	if Map.map[$"..".player_position]["monsters"] == true:
 		fight_monster()
 

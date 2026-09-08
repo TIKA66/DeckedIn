@@ -1,19 +1,22 @@
 '''
 Filename: movement.gd
 Version: 1.0
-Purpose: To handle the movemement of the player and the artefact.
+Purpose: To handle the movemement of the player and the artefact:
+	Place player and artefact, display rooms, process movement.
 Date: 6/9/2026
 Author: Elliot Slota & Tika Banerjee
 '''
-
+# NODE: A basic building block of a Godot game. Nodes provide different types of functionality and can be organised together within a scene tree.
 extends Node2D
 
-#NULL - a variable that points to a non-existent object, in this case to be initialised later
+# VARIABLE: Stores a value in memory under a named identifier. The value can be accessed & changed throughout the program.
+# NULL: a value that references a nonexistent object/adress.
 var player_position = null
 var selected_room = null # Stores the room the player wishes to move to
 var movement_cost: int = 0 # stores the cost to move to a selected room
 var adjacent_rooms = null
 
+# FUNCTION: A reusable block of code that performs a specific task when it is called. Functions can accept parameters and return a value.
 # START MOVEMENT - test whether the player has movement points, if not, do not allow them to move
 func start_movement() -> void:
 	if $Card_System.available_movement <= 0:
@@ -25,6 +28,7 @@ func start_movement() -> void:
 func display_adjacent_rooms() -> void:
 	adjacent_rooms = Map.map[player_position]["adjacent_rooms"] # get adjacent rooms from player postiion
 	print("Adjacent rooms:")
+	# FOR LOOP: Repeats a block of code a specified number of times.
 	for room in adjacent_rooms: #iterate through rooms and print their cost
 		print("Room: ", room)
 		print("Movement Cost: ", Map.map[room]["movement_cost"])
@@ -34,9 +38,10 @@ func select_room(room_position: int, room_cost: int) -> bool:
 	selected_room = room_position
 	movement_cost = room_cost
 #	Check whether selected room is adjacent to player
+	# IF CONDITIONAL: checks whether a condition is satisfied and executes blocks of code based on the result.
 	if selected_room not in adjacent_rooms:
 		print("You cannot move to this room.")
-		return false
+		return false # RETURN VALUE: The value produced by a function and sent back to the part of the program that called it.
 #	Test whether the player has enough movement points
 	if $Card_System.available_movement < movement_cost:
 		print("You do not have enough movement points.")
@@ -81,6 +86,7 @@ func current_room() -> void:
 	display_room() #display player's room
 	display_adjacent_rooms() #dispaly adjacent rooms
 	$Artefact.found_check() #check whether artefact is in room with player
+	# MATCH: Similar to IF statements, executes branches of code based on conditions.
 	match Map.map[player_position]["type"]: #determine which type of room to start displaying
 		"starting":
 			$Rooms.starting()

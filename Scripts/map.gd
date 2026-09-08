@@ -5,9 +5,10 @@ Purpose: To hold the map and room details.
 Date: 6/9/2026
 Author: Aikantika Banerjee & Elliot Slota
 '''
-
+# NODE: A basic building block of a Godot game. Nodes provide different types of functionality and can be organised together within a scene tree.
 extends Node
 
+# DICTIONARY: A collection of key-value pairs used to store related information. Each value is accessed using its corresponding key.
 #MAP - creates the map as a dictionary and holds its contents.
 var map:Dictionary = {
 	1: {

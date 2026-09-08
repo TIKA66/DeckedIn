@@ -6,12 +6,13 @@ Purpose: To process actions of individual rooms:
 Date: 4/9/2026
 Author: Aikantika Banerjee & Elliot Slota
 '''
-
+# NODE: A basic building block of a Godot game. Nodes provide different types of functionality and can be organised together within a scene tree.
 extends Node2D
 
-var item_spawn_rate = null #chance of each room spawning an item
-
 #GENERAL ITEM VARS
+# NULL: a value that references a nonexistent object/adress.
+var item_spawn_rate = null #chance of each room spawning an item
+# ARRAY: An ordered collection of multiple values stored under one variable. Each value can be accessed using its index.
 var available_items = [] #items that can be spawned
 var item_spawned = null
 
@@ -22,16 +23,18 @@ var monster_to_spawn = null
 #MARKET VARS
 var items_to_sell = [] # items that can be sold
 
+# INITIALISE ITEMS
+# FUNCTION: A reusable block of code that performs a specific task when it is called. Functions can accept parameters and return a value.
 func _ready() -> void:
 	create_items_to_spawn() #create available items to spawn cards
 	create_items_to_sell() #create items to sell cards
 
 #PLACE ITEM INTO ROOM
 func place_item(spawn_rate):
-	var item_roll = randf()
+	var item_roll = randf() # RANDF: Creates a randomly generated float.
 	print("Item roll: ", item_roll) #DEBUGGING
 	if item_roll > spawn_rate:
-		item_spawned = randi_range(1, available_items.size()-1) # choose which item to spawn
+		item_spawned = randi_range(1, available_items.size()-1) # RANDI_RANGE: Selects a random number within the provided range. Choose which item to spawn 
 		$"../Map".map[$"..".player_position]["items"] = available_items[item_spawned] #spawn item
 		#print("item in room: ", Map.map[$"..".player_position]["items"]["name"]) # debugging - fetch item in room
 
