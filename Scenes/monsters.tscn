@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://b4x0ucc33ttdo"]
+
+[ext_resource type="Texture2D" uid="uid://b5i4vcdlfpex8" path="res://Resources/monster_goblin.png" id="1_b03l4"]
+[ext_resource type="Texture2D" uid="uid://38rlnic7b2qf" path="res://Resources/monster_spider.png" id="1_q3w2g"]
+[ext_resource type="Script" uid="uid://ctxmjvah13bew" path="res://Scripts/monster.gd" id="1_x7uex"]
+[ext_resource type="Texture2D" uid="uid://dbtedkk68tumu" path="res://Resources/monster_mimic.png" id="3_x7uex"]
+
+[node name="Monster" type="Control" unique_id=501866457]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x7uex")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=442892327]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=2032281545]
+layout_mode = 2
+
+[node name="Spider" type="Panel" parent="VBoxContainer/HBoxContainer" unique_id=1636764701]
+layout_mode = 2
+
+[node name="Spider" type="TextureRect" parent="VBoxContainer/HBoxContainer/Spider" unique_id=1477458511]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_q3w2g")
+
+[node name="Goblin" type="Panel" parent="VBoxContainer/HBoxContainer" unique_id=1477137220]
+layout_mode = 2
+
+[node name="Goblin" type="TextureRect" parent="VBoxContainer/HBoxContainer/Goblin" unique_id=1092928141]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_b03l4")
+
+[node name="Mimic" type="Panel" parent="VBoxContainer/HBoxContainer" unique_id=1828963742]
+layout_mode = 2
+
+[node name="Mimic" type="TextureRect" parent="VBoxContainer/HBoxContainer/Mimic" unique_id=1554277624]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_x7uex")
+
+[node name="Label" type="Label" parent="." unique_id=249627281]
+layout_mode = 0
+offset_left = 386.0
+offset_top = 117.0
+offset_right = 480.0
+offset_bottom = 212.0

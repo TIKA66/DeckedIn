@@ -1,6 +1,15 @@
+'''
+Filename: rooms.gd
+Version: 2.0
+Purpose: To process actions of individual rooms:
+	spawning monsters, displaying items, displaying the market.
+Date: 4/9/2026
+Author: Aikantika Banerjee & Elliot Slota
+'''
+
 extends Node2D
 
-var item_spawn_rate = null
+var item_spawn_rate = null #chance of each room spawning an item
 
 #GENERAL ITEM VARS
 var available_items = [] #items that can be spawned
@@ -14,8 +23,8 @@ var monster_to_spawn = null
 var items_to_sell = [] # items that can be sold
 
 func _ready() -> void:
-	create_items_to_spawn()
-	create_items_to_sell()
+	create_items_to_spawn() #create available items to spawn cards
+	create_items_to_sell() #create items to sell cards
 
 #PLACE ITEM INTO ROOM
 func place_item(spawn_rate):

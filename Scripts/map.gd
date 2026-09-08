@@ -1,15 +1,14 @@
 '''
 Filename: map.gd
 Version: 1.0
-Purpose: To hold the map and other global variables that are used across multiple scripts
+Purpose: To hold the map and room details.
 Date: 6/9/2026
-Author: Elliot Slota
+Author: Aikantika Banerjee & Elliot Slota
 '''
 
 extends Node
 
-#MAP - creates the map as a dictionary, each number represents the room and has a dictionary of its properties inside
-
+#MAP - creates the map as a dictionary and holds its contents.
 var map:Dictionary = {
 	1: {
 		"room": 1,
