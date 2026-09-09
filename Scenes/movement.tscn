@@ -90,19 +90,70 @@ texture = ExtResource("6_gh1hn")
 visible = false
 position = Vector2(120, 80)
 
-[node name="Selection" type="Area2D" parent="." unique_id=1636338974]
+[node name="Selection1" type="Area2D" parent="." unique_id=1636338974]
 position = Vector2(80, 152.5)
 scale = Vector2(0.1, 0.15)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Selection" unique_id=14366586]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Selection1" unique_id=14366586]
 position = Vector2(110, 90)
 scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("RectangleShape2D_wxbh7")
 
-[node name="Template" type="Sprite2D" parent="Selection" unique_id=1160432708]
+[node name="Template" type="Sprite2D" parent="Selection1" unique_id=1160432708]
 position = Vector2(120, 80)
 texture = ExtResource("8_gvcvr")
 
-[node name="NoTemplate" type="Sprite2D" parent="Selection" unique_id=2071902446]
+[node name="NoTemplate" type="Sprite2D" parent="Selection1" unique_id=2071902446]
 visible = false
 position = Vector2(120, 80)
+
+[node name="Selection2" type="Area2D" parent="." unique_id=1176849702]
+position = Vector2(363, 152.5)
+scale = Vector2(0.1, 0.15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Selection2" unique_id=194034131]
+position = Vector2(110, 90)
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_wxbh7")
+
+[node name="Template" type="Sprite2D" parent="Selection2" unique_id=1611084535]
+position = Vector2(120, 80)
+texture = ExtResource("8_gvcvr")
+
+[node name="NoTemplate" type="Sprite2D" parent="Selection2" unique_id=1304075629]
+visible = false
+position = Vector2(120, 80)
+
+[node name="Selection3" type="Area2D" parent="." unique_id=489758803]
+position = Vector2(221, 84)
+scale = Vector2(0.1, 0.15)
+
+[node name="Template" type="Sprite2D" parent="Selection3" unique_id=442254126]
+position = Vector2(120, 80)
+texture = ExtResource("8_gvcvr")
+
+[node name="NoTemplate" type="Sprite2D" parent="Selection3" unique_id=692380230]
+visible = false
+position = Vector2(120, 80)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Selection3" unique_id=1532427271]
+position = Vector2(110, 90)
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_wxbh7")
+
+[node name="Selection4" type="Area2D" parent="." unique_id=906486725]
+position = Vector2(221, 225)
+scale = Vector2(0.1, 0.15)
+
+[node name="Template" type="Sprite2D" parent="Selection4" unique_id=1298852212]
+position = Vector2(120, 80)
+texture = ExtResource("8_gvcvr")
+
+[node name="NoTemplate" type="Sprite2D" parent="Selection4" unique_id=563435348]
+visible = false
+position = Vector2(120, 80)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Selection4" unique_id=1673311142]
+position = Vector2(110, 90)
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_wxbh7")

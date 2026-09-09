@@ -10,3 +10,4 @@ res://Scripts/map.gd
 res://Scripts/monster.gd
 res://Scripts/movement.gd
 res://Scripts/rooms.gd
+res://Scenes/map.tscn

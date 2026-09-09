@@ -12,6 +12,7 @@ Author: Aikantika Banerjee & Elliot Slota
 extends Node
 # CLASS: A blueprint for creating objects that combines related data and behaviours.
 class_name CardSystem
+@export var movement_path: NodePath
 
 # VARIABLE: Stores a value in memory under a named identifier. The value can be accessed & changed throughout the program.
 # USER'S CARD VARIABLES - assigning variable names with accordance to the user
@@ -324,6 +325,7 @@ func process_card(card_index: int) -> void:
 		available_attack += selected_card["attack"]
 	elif selected_card["type"] == "movement":
 		available_movement += selected_card["movement"]
+		get_tree().current_scene.get_node("Movement").start_movement()
 	elif selected_card["type"] == "item":
 		process_item(selected_card)
 	selected_card["use"] = true
@@ -350,6 +352,23 @@ func process_item(card: Dictionary) -> void:
 			draw_one_card()
 		"Treasure Chest":
 			player_gold += 10
+
+# NEW HAND - creates a new hand whenever the player enters a new room
+func new_hand() -> void:
+	# Move the current hand into the discard pile
+	discard_pile.append_array(hand)
+	hand.clear()
+	# Draw a new hand of cards
+	draw_hand()
+	# Display the new hand
+	show_hand()
+	# Reset card selection
+	selected_card_index = 0
+	card_confirmed = false
+	# Update the visual selection
+	update_card_selection()
+	print("NEW HAND DRAWN")
+	print("New hand: ", hand)
 
 # END TURN - resetting the variables to its orginal state
 func end_turn() -> void:
@@ -398,7 +417,6 @@ func reset_card_flags() -> void:
 	dragon_triggered = false
 	portal_used = false
 	cards_drawn = 0
-
 
 func _on_end_turn_button_pressed() -> void:
 	end_turn()
