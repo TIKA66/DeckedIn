@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://cfao5p522v2dr"]
+
+[ext_resource type="Script" uid="uid://dpaqoejniygn0" path="res://Scripts/gui.gd" id="1_gnd4w"]
+[ext_resource type="Texture2D" uid="uid://bpa7k3tg876kk" path="res://Resources/background_map.png" id="2_gnd4w"]
+[ext_resource type="Texture2D" uid="uid://c6ek0h6mjidju" path="res://Resources/gui_attack.png" id="3_bf1fa"]
+[ext_resource type="Texture2D" uid="uid://bxly2hifiwfxc" path="res://Resources/gui_movement.png" id="4_q52sk"]
+[ext_resource type="Texture2D" uid="uid://t8hbhfomv3vs" path="res://Resources/gui_hp.png" id="5_c5g4q"]
+[ext_resource type="Texture2D" uid="uid://40bpowt7mwgc" path="res://Resources/gui_stack_of_coins.png" id="6_s7psx"]
+[ext_resource type="Texture2D" uid="uid://q8pc8ibuxoya" path="res://Resources/artefact_closed.png" id="7_705sf"]
+
+[node name="GUI" type="Control" unique_id=2111652911]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gnd4w")
+
+[node name="Stats_and_map" type="VBoxContainer" parent="." unique_id=708166951]
+layout_mode = 0
+offset_right = 47.0
+offset_bottom = 161.0
+theme_override_constants/separation = 8
+
+[node name="Map" type="Panel" parent="Stats_and_map" unique_id=2066298263]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Stats_and_map/Map" unique_id=1034880712]
+layout_mode = 0
+offset_right = 47.0
+offset_bottom = 56.929577
+texture = ExtResource("2_gnd4w")
+expand_mode = 1
+
+[node name="Attack" type="Panel" parent="Stats_and_map" unique_id=1287797461]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Stats_and_map/Attack" unique_id=1102582600]
+layout_mode = 0
+offset_top = 52.0
+offset_right = 21.0
+offset_bottom = 76.5
+texture = ExtResource("3_bf1fa")
+expand_mode = 1
+
+[node name="Movement" type="Panel" parent="Stats_and_map" unique_id=1968195319]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Stats_and_map/Movement" unique_id=457707962]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 69.0
+offset_right = 19.0
+offset_bottom = 89.591545
+texture = ExtResource("4_q52sk")
+expand_mode = 1
+
+[node name="HP" type="Panel" parent="Stats_and_map" unique_id=1520024882]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Stats_and_map/HP" unique_id=2105544972]
+layout_mode = 0
+offset_top = 81.0
+offset_right = 21.0
+offset_bottom = 106.43663
+texture = ExtResource("5_c5g4q")
+expand_mode = 1
+
+[node name="Gold" type="Panel" parent="Stats_and_map" unique_id=1797678402]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Stats_and_map/Gold" unique_id=812738613]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 98.0
+offset_right = 19.0
+offset_bottom = 119.80281
+texture = ExtResource("6_s7psx")
+expand_mode = 1
+
+[node name="Labels" type="VBoxContainer" parent="." unique_id=941791824]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 60.0
+offset_right = 47.0
+offset_bottom = 156.0
+theme_override_constants/separation = 0
+
+[node name="Attack" type="Label" parent="Labels" unique_id=684276113]
+layout_mode = 2
+text = "0"
+
+[node name="Movement" type="Label" parent="Labels" unique_id=556164718]
+layout_mode = 2
+text = "0"
+
+[node name="Health" type="Label" parent="Labels" unique_id=711333225]
+layout_mode = 2
+text = "0"
+
+[node name="Gold" type="Label" parent="Labels" unique_id=897148820]
+layout_mode = 2
+text = "0"
+
+[node name="Artefact" type="Panel" parent="." unique_id=323859672]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 152.0
+offset_right = 47.0
+offset_bottom = 152.0
+
+[node name="TextureRect" type="TextureRect" parent="Artefact" unique_id=313650083]
+layout_mode = 0
+offset_left = 373.0
+offset_top = 135.0
+offset_right = 437.0
+offset_bottom = 171.0
+texture = ExtResource("7_705sf")
+stretch_mode = 4

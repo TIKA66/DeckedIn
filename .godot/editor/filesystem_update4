@@ -1,8 +1,4 @@
-res://Scenes/card.tscn
-res://Scripts/artefact.gd
-res://Scripts/dragon.gd
-res://Scripts/main.gd
-res://Scripts/map.gd
-res://Scripts/monster.gd
-res://Scripts/movement.gd
+res://Scenes/gui.tscn
+res://Scenes/main.tscn
 res://Scripts/rooms.gd
+res://Scripts/artefact.gd

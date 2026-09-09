@@ -2,28 +2,20 @@
 
 [ext_resource type="PackedScene" uid="uid://b0efnx7pamvx8" path="res://Scenes/card.tscn" id="1_8gbba"]
 [ext_resource type="Script" uid="uid://5p5cpb0yym4c" path="res://Scripts/main.gd" id="1_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://cfao5p522v2dr" path="res://Scenes/gui.tscn" id="2_344ge"]
 [ext_resource type="PackedScene" uid="uid://cgsbhxgchkt8g" path="res://Scenes/rooms.tscn" id="2_jjvhh"]
+[ext_resource type="Texture2D" uid="uid://dgjw66lkx7mqk" path="res://Resources/template_main_background_general_1.png" id="2_ynf5e"]
 [ext_resource type="PackedScene" uid="uid://b4x0ucc33ttdo" path="res://Scenes/monsters.tscn" id="5_6bp64"]
 [ext_resource type="PackedScene" uid="uid://ct3u0utr1tdro" path="res://Scenes/movement.tscn" id="6_21xkr"]
 [ext_resource type="PackedScene" uid="uid://cmji0q45s33we" path="res://Scenes/map.tscn" id="7_6bp64"]
 [ext_resource type="PackedScene" uid="uid://ckue8tktk1pq6" path="res://Scenes/artefact.tscn" id="8_344ge"]
 
-[sub_resource type="GDScript" id="GDScript_344ge"]
-script/source = "extends Button
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-"
-
 [node name="main" type="Node2D" unique_id=928746799]
 script = ExtResource("1_jjvhh")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=373035201]
+position = Vector2(240, 160)
+texture = ExtResource("2_ynf5e")
 
 [node name="Card_System" parent="." unique_id=1456674367 instance=ExtResource("1_8gbba")]
 anchors_preset = 0
@@ -48,9 +40,4 @@ position = Vector2(160, -60)
 
 [node name="Artefact" parent="." unique_id=1552427224 instance=ExtResource("8_344ge")]
 
-[node name="End_turn" type="Button" parent="." unique_id=1582002304]
-offset_left = 383.0
-offset_right = 480.0
-offset_bottom = 29.0
-text = "End turn"
-script = SubResource("GDScript_344ge")
+[node name="GUI" parent="." unique_id=2111652911 instance=ExtResource("2_344ge")]

@@ -21,7 +21,7 @@ var artefact_use: bool = false
 func found_check():
 	# IF CONDITIONAL: checks whether a condition is satisfied and executes blocks of code based on the result.
 	if artefact_position == $"..".player_position: #if artefact position and player's position are the same, update to have artefact
-		$Artefact.texture = preload("res://Resources/artefact_open.png") #set artefact texture to the open sprite
+		$Artefact/TextureRect.texture = load("res://Resources/artefact_open.png") #set artefact texture to the open sprite
 		artefact_position = null # remove artefact from map
 		$"../..".player_artefact = true
 	else:

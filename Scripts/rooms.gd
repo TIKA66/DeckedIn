@@ -83,16 +83,19 @@ func place_monster():
 
 
 func starting():
+	$"../Background".texture = load("res://Resources/template_main_background_general_1.png")
 	item_spawn_rate = 0.2
 	place_item(item_spawn_rate)
 
 func monster():
+	$"../Background".texture = load("res://Resources/template_main_background_general_2.png")
 	item_spawn_rate = 0.4
 	place_item(item_spawn_rate)
 	place_monster()
 #	FUNCTION ABOUT BUTTON PRESSED TO END TURN.
 
 func market():
+	$"../Background".texture = load("res://Resources/background_market.png")
 #	FIX THIS
 	#print("Items available:")
 	#for item in items_to_sell:
@@ -101,6 +104,7 @@ func market():
 	pass
 
 func ending():
+	$"../Background".texture = load("res://Resources/template_main_background_general_3.png")
 	item_spawn_rate = 0.4
 	place_item(item_spawn_rate)
 	$"../Artefact".win_check() #Check if artefact is held in this room
